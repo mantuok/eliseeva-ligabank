@@ -45,11 +45,11 @@
       <section class="main__converter converter">
         <h2 class="converter__heading">Конвертер валют</h2>
         <form class="coverter__covert-form covert-form" method="#">
-          <div class="covert-form__current-container current">
-            <label class="current__label" for="current-value" >У меня есть</label>
-            <input class="current__value" id="current-value" name="current-value" type="number">
-            <label class="current__currency-label visually-hidden" for="current-currency">Выбрать текущую валюту</label>
-            <select class="current__currency" id="current-currency" name="current-currency">
+          <div class="covert-form__source-container source">
+            <label class="source__label" for="source-value" >У меня есть</label>
+            <input class="source__value" id="source-value" name="source-value" type="number">
+            <label class="source__currency-label visually-hidden" for="source-currency">Выбрать текущую валюту</label>
+            <select class="source__currency" id="source-currency" name="source-currency">
               <option value="RUB">RUB</option>
               <option value="USD">USD</option>
               <option value="EUR">EUR</option>
@@ -70,7 +70,61 @@
           <button class="convet-form__submit" type="submit">Сохранить результат</button>
         </form>
       </section>
-
+      <section class="main__history history">
+        <h3 class="history__heading">История конвертация</h3>
+        <ul class="history__list">
+          <li class="history__item history-item">
+            <span class="history-item__date">25.11.2020</span>
+            <span class="history-item__source-value">1000</span>
+            <span class="history-item__source-currency">RUB</span>
+            <span class="history-item__target-value">13,1234</span>
+            <span class="history-item__target-currency">USD</span>
+          </li>
+          <li class="history__item history-item">
+            <span class="history-item__date">24.11.2020</span>
+            <span class="history-item__source-value">900</span>
+            <span class="history-item__source-currency">RUB</span>
+            <span class="history-item__target-value">10,1234</span>
+            <span class="history-item__target-currency">USD</span>
+          </li>
+          <li class="history__item history-item">
+            <span class="history-item__date">23.11.2020</span>
+            <span class="history-item__source-value">800</span>
+            <span class="history-item__source-currency">RUB</span>
+            <span class="history-item__target-value">9,1234</span>
+            <span class="history-item__target-currency">USD</span>
+          </li>
+          <li class="history__item history-item">
+            <span class="history-item__date">22.11.2020</span>
+            <span class="history-item__source-value">700</span>
+            <span class="history-item__source-currency">RUB</span>
+            <span class="history-item__target-value">8,1234</span>
+            <span class="history-item__target-currency">USD</span>
+          </li>
+          <li class="history__item history-item">
+            <span class="history-item__date">21.11.2020</span>
+            <span class="history-item__source-value">500</span>
+            <span class="history-item__source-currency">RUB</span>
+            <span class="history-item__target-value">7,1234</span>
+            <span class="history-item__target-currency">USD</span>
+          </li>
+          <li class="history__item history-item">
+            <span class="history-item__date">20.11.2020</span>
+            <span class="history-item__source-value">400</span>
+            <span class="history-item__source-currency">RUB</span>
+            <span class="history-item__target-value">6,1234</span>
+            <span class="history-item__target-currency">USD</span>
+          </li>
+          <li class="history__item history-item">
+            <span class="history-item__date">19.11.2020</span>
+            <span class="history-item__source-value">300</span>
+            <span class="history-item__source-currency">RUB</span>
+            <span class="history-item__target-value">5,1234</span>
+            <span class="history-item__target-currency">USD</span>
+          </li>
+        </ul>
+        <button class="history__reset" type="button">Очистить историю</button>
+      </section>
     </main>
   </body>
 </html>
