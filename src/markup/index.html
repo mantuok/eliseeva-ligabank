@@ -11,7 +11,7 @@
         <img class="logo__image" alt="ЛИГА Банк" src="" width="" height="">
       </a>
       <nav class="header__navigation header-navigation">
-        <ul class="navigation__list">
+        <ul class="header-navigation__list">
           <li class="header-navigation__item">
             <a class="header-navigation__link" href="#">Услуги</a>
           </li>
@@ -34,5 +34,43 @@
         <span class="user-login__text">Войти в Интернет-банк</span>
       </a>
     </header>
+    <main class="page__main main">
+      <section class="main__promo promo">
+        <h1 class="promo__header">Лига Банк</h1>
+        <p class="promo__description">Кредиты на любой случай</p>
+        <a class="promo__link" href="#">Рассчитать кредит</a>
+        <img class="promo__card-image--black" scr="" alt="Черная карта банка" width="" height="">
+        <img class="promo__card-image--white" scr="" alt="Белая карта банка" width="" height="">
+      </section>
+      <section class="main__converter converter">
+        <h2 class="converter__heading">Конвертер валют</h2>
+        <form class="coverter__covert-form covert-form" method="#">
+          <div class="covert-form__current-container current">
+            <label class="current__label" for="current-value" >У меня есть</label>
+            <input class="current__value" id="current-value" name="current-value" type="number">
+            <label class="current__currency-label visually-hidden" for="current-currency">Выбрать текущую валюту</label>
+            <select class="current__currency" id="current-currency" name="current-currency">
+              <option value="RUB">RUB</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </div>
+          <div class="covert-form__target-container taget">
+            <label class="target__value-label" for="target-value" >У меня есть</label>
+            <input class="target__value" id="target-value" name="target-value" type="number">
+            <label class="target__currency-label visually-hidden" for="target-currency">Выбрать целевую валюту</label>
+            <select class="target__currency" id="target-currency" name="target-currency">
+              <option value="RUB">RUB</option>
+              <option value="USD">USD</option>
+              <option value="EUR">EUR</option>
+            </select>
+          </div>
+          <label class="convert-form__date-label visually-hidden" for="covert-form-date">Выбрать дату</label>
+          <input class="convert-form__date" id="covert-form-date" name="covert-form-date" type="date">
+          <button class="convet-form__submit" type="submit">Сохранить результат</button>
+        </form>
+      </section>
+
+    </main>
   </body>
 </html>
