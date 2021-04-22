@@ -1,0 +1,15 @@
+.header {
+  display: grid;
+  grid-template-columns: min-content 1fr max-content;
+  column-gap: 58px;
+  align-items: end;
+
+  width: 1366px;
+  padding-top: 27px;
+  padding-right: 98px;
+  padding-bottom: 39px;
+  padding-left: 98px;
+  margin: auto;
+
+  background-color: var(--grey-light);
+}
