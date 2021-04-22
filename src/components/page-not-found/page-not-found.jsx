@@ -3,25 +3,25 @@ import {Link} from 'react-router-dom';
 
 const PageNotFound = () => {
   return (
-    <body className="page">
+    <div className="page">
       <header className="page__header header">
         <img className="header__logo" alt="ЛИГА Банк" src="../img/ligabank-logo.svg" width="149" height="25" />
         <nav className="header__navigation header-navigation">
           <ul className="header-navigation__list">
-            <li className="header-navigation__item">
-                <Link className="header-navigation__link" to="/">Услуги</Link>
+          <li className="header-navigation__item">
+                <Link className="header-navigation__link" to="/page-not-found">Услуги</Link>
             </li>
             <li className="header-navigation__item">
-                <Link className="header-navigation__link" to="/">Рассчитать кредит</Link>
+                <Link className="header-navigation__link" to="/page-not-found">Рассчитать кредит</Link>
+            </li>
+            <li className="header-navigation__item header-navigation__item--active">
+                <Link className="header-navigation__link header-navigation__link--active" to="/full-page">Конвертер валют</Link>
             </li>
             <li className="header-navigation__item">
-                <Link className="header-navigation__link" to="/">Конвертер валют</Link>
+                <Link className="header-navigation__link" to="/page-not-found">Контакты</Link>
             </li>
             <li className="header-navigation__item">
-                <Link className="header-navigation__link" to="/">Контакты</Link>
-            </li>
-            <li className="header-navigation__item">
-                <Link className="header-navigation__link" to="/">Задать вопрос</Link>
+                <Link className="header-navigation__link" to="/page-not-found">Задать вопрос</Link>
             </li>
           </ul>
         </nav>
@@ -90,7 +90,7 @@ const PageNotFound = () => {
           </section>
         </section>
       </footer>
-    </body>
+    </div>
   )
 };
 

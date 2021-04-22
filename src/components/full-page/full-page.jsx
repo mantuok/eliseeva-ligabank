@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 
 const FullPage = () => {
   return (
-    <body className="page">
+    <div className="page">
       <header className="page__header header">
         <img className="header__logo" alt="ЛИГА Банк" src="../img/ligabank-logo.svg" width="149" height="25" />
         <nav className="header__navigation header-navigation">
@@ -15,7 +15,7 @@ const FullPage = () => {
                 <Link className="header-navigation__link" to="/page-not-found">Рассчитать кредит</Link>
             </li>
             <li className="header-navigation__item header-navigation__item--active">
-                <Link className="header-navigation__link header-navigation__link--active">Конвертер валют</Link>
+                <a className="header-navigation__link header-navigation__link--active">Конвертер валют</a>
             </li>
             <li className="header-navigation__item">
                 <Link className="header-navigation__link" to="/page-not-found">Контакты</Link>
@@ -52,7 +52,7 @@ const FullPage = () => {
             <div className="covert-form__target-container taget">
               <label className="target__value-label" htmlFor="target-value" >У меня есть</label>
               <input className="target__value" id="target-value" name="target-value" type="number" />
-              <label className="target__currency-label visually-hidden" fohtmlForr="target-currency">Выбрать целевую валюту</label>
+              <label className="target__currency-label visually-hidden" htmlFor="target-currency">Выбрать целевую валюту</label>
               <select className="target__currency" id="target-currency" name="target-currency">
                 <option value="RUB">RUB</option>
                 <option value="USD">USD</option>
@@ -180,7 +180,7 @@ const FullPage = () => {
           </section>
         </section>
       </footer>
-    </body>
+    </div>
   )
 };
 
