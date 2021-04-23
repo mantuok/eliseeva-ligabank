@@ -13,10 +13,10 @@
 }
 
 .header-navigation__link {
-  color: var(--grey-dark);
+  color: var(--font-basic);
   text-decoration: none;
 
   &--active {
-    color: var(--blue-basic)
+    color: var(--basic-contrast)
   }
 }

@@ -1,0 +1,11 @@
+@mixin gradient-dark {
+	background: linear-gradient(180deg, var(--basic-contrast) 36%, var(--gradient-contrast-dark) 99%);
+}	
+
+@mixin gradient-light-short {
+	background: linear-gradient(183deg, var(--basic-contrast) 66%, var(--gradient-contrast-light) 97%);
+}
+
+@mixin gradient-light-long {
+	background: linear-gradient(183deg, var(--basic-contrast) 27%, var(--gradient-contrast-light) 97%);
+}

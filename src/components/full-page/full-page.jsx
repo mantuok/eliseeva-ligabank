@@ -31,10 +31,10 @@ const FullPage = () => {
       </header>
       <main className="page__main main">
         <section className="main__promo promo">
-            <h1 className="promo__header">Лига Банк</h1>
-            <p className="promo__description">Кредиты на любой случай</p>
-            <Link className="promo__link" to="/page-not-found">Рассчитать кредит</Link>
-            <img className="promo__cards-image" src="../img/black-and-white-cards.png" alt="Пример карт банка" width="398" height="240" />
+          <h1 className="promo__header">Лига Банк</h1>
+          <p className="promo__description">Кредиты на любой случай</p>
+          <Link className="promo__link" to="/page-not-found">Рассчитать кредит</Link>
+          <img className="promo__cards-image" src="../img/black-and-white-cards.png" alt="Пример карт банка" width="398" height="240" />
         </section>
         <section className="main__converter converter">
           <h2 className="converter__heading">Конвертер валют</h2>
