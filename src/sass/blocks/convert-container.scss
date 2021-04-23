@@ -15,10 +15,13 @@
 
 .convert-container__value {
   margin-right: 15px;
+
   @include input-style;
 }
 
 .convert-container__currency {
+  position: relative;
+
   width: 120px;
   height: 60px;
 
@@ -26,4 +29,12 @@
 
   font-family: inherit;
   font-size: 30px;
+
+  border-radius: 4px;
+
+  background-image: url("../../img/select-arrow.svg");
+  background-repeat: no-repeat;
+  background-position: 87px 23px;
+
+  appearance: none;
 }
