@@ -39,21 +39,21 @@ const FullPage = () => {
         <section className="main__converter converter">
           <h2 className="converter__heading">Конвертер валют</h2>
           <form className="converter__convert-form convert-form" method="#">
-            <div className="convert-form__source-container source">
-              <label className="source__label" htmlFor="source-value" >У меня есть</label>
-              <input className="source__value" id="source-value" name="source-value" type="number" />
-              <label className="source__currency-label visually-hidden" htmlFor="source-currency">Выбрать текущую валюту</label>
-              <select className="source__currency" id="source-currency" name="source-currency">
+            <div className="convert-form__source-container convert-container">
+              <label className="convert-container__label" htmlFor="source-value" >У меня есть</label>
+              <input className="convert-container__value" id="source-value" name="source-value" type="number" />
+              <label className="convert-container__currency-label visually-hidden" htmlFor="source-currency">Выбрать текущую валюту</label>
+              <select className="convert-container__currency" id="source-currency" name="source-currency">
                 <option value="RUB">RUB</option>
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>
               </select>
             </div>
-            <div className="convert-form__target-container taget">
-              <label className="target__value-label" htmlFor="target-value" >У меня есть</label>
-              <input className="target__value" id="target-value" name="target-value" type="number" />
-              <label className="target__currency-label visually-hidden" htmlFor="target-currency">Выбрать целевую валюту</label>
-              <select className="target__currency" id="target-currency" name="target-currency">
+            <div className="convert-form__target-container convert-container">
+              <label className="convert-container__label" htmlFor="target-value" >Хочу приобрести</label>
+              <input className="convert-container__value" id="target-value" name="target-value" type="number" />
+              <label className="convert-container__currency-label visually-hidden" htmlFor="target-currency">Выбрать целевую валюту</label>
+              <select className="convert-container__currency" id="target-currency" name="target-currency">
                 <option value="RUB">RUB</option>
                 <option value="USD">USD</option>
                 <option value="EUR">EUR</option>

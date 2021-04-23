@@ -1,9 +1,25 @@
 .convert-form {
+  position: relative;
+
   display: grid;
   grid-template-areas: 
     "source target"
     "date submit";
   row-gap: 85px;
+  column-gap: 120px;
+
+  &::after {
+    content: "";
+    position: absolute;
+
+    top: 57px;
+    right: 555px;
+    
+    width: 56px;
+    height: 34px;
+
+    background-image: url("../../img/convert-arrows.svg");
+  }
 }
 
 .covert-form__source-container {
