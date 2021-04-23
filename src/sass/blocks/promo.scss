@@ -88,12 +88,7 @@
   padding-bottom: 21px;
   padding-left: 36px;
 
-  color: var(--font-basic);
-  font-size: 18px;
-  font-weight: 500;
   text-decoration: none;
 
-  background-color: var(--basic);
-
-  border-radius: 4px;
+  @include button-basic-style;
 }

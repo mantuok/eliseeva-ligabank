@@ -61,7 +61,7 @@ const FullPage = () => {
             </div>
             <label className="convert-form__date-label visually-hidden" htmlFor="convert-form-date">Выбрать дату</label>
             <input className="convert-form__date" id="convert-form-date" name="convert-form-date" type="date" />
-            <button className="convet-form__submit" type="submit">Сохранить результат</button>
+            <button className="convert-form__submit" type="submit">Сохранить результат</button>
           </form>
         </section>
         <section className="main__history history">

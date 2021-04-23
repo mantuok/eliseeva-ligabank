@@ -18,9 +18,17 @@
   grid-area: date;
   justify-self: start;
 
-  @include input-size;
+  @include input-style;
 }
 
 .convert-form__submit {
   grid-area: submit;
+  justify-self: end;
+
+  padding-top: 25px;
+  padding-right: 102px;
+  padding-bottom: 24px;
+  padding-left: 101px;
+
+  @include button-contrast-style;
 }
