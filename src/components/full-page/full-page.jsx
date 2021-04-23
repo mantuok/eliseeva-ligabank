@@ -38,8 +38,8 @@ const FullPage = () => {
         </section>
         <section className="main__converter converter">
           <h2 className="converter__heading">Конвертер валют</h2>
-          <form className="coverter__covert-form covert-form" method="#">
-            <div className="covert-form__source-container source">
+          <form className="converter__convert-form convert-form" method="#">
+            <div className="convert-form__source-container source">
               <label className="source__label" htmlFor="source-value" >У меня есть</label>
               <input className="source__value" id="source-value" name="source-value" type="number" />
               <label className="source__currency-label visually-hidden" htmlFor="source-currency">Выбрать текущую валюту</label>
@@ -49,7 +49,7 @@ const FullPage = () => {
                 <option value="EUR">EUR</option>
               </select>
             </div>
-            <div className="covert-form__target-container taget">
+            <div className="convert-form__target-container taget">
               <label className="target__value-label" htmlFor="target-value" >У меня есть</label>
               <input className="target__value" id="target-value" name="target-value" type="number" />
               <label className="target__currency-label visually-hidden" htmlFor="target-currency">Выбрать целевую валюту</label>
@@ -59,8 +59,8 @@ const FullPage = () => {
                 <option value="EUR">EUR</option>
               </select>
             </div>
-            <label className="convert-form__date-label visually-hidden" htmlFor="covert-form-date">Выбрать дату</label>
-            <input className="convert-form__date" id="covert-form-date" name="covert-form-date" type="date" />
+            <label className="convert-form__date-label visually-hidden" htmlFor="convert-form-date">Выбрать дату</label>
+            <input className="convert-form__date" id="convert-form-date" name="convert-form-date" type="date" />
             <button className="convet-form__submit" type="submit">Сохранить результат</button>
           </form>
         </section>

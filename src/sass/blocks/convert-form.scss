@@ -1,0 +1,26 @@
+.convert-form {
+  display: grid;
+  grid-template-areas: 
+    "source target"
+    "date submit";
+  row-gap: 85px;
+}
+
+.covert-form__source-container {
+  grid-area: source;
+}
+
+.covert-form__target-container {
+  grid-area: target;
+}
+
+.convert-form__date {
+  grid-area: date;
+  justify-self: start;
+
+  @include input-size;
+}
+
+.convert-form__submit {
+  grid-area: submit;
+}

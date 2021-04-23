@@ -9,3 +9,8 @@
 @mixin gradient-light-long {
 	background: linear-gradient(183deg, var(--basic-contrast) 27%, var(--gradient-contrast-light) 97%);
 }
+
+@mixin input-size {
+  width: 390px;
+  height: 60px;
+}
