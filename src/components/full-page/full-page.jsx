@@ -65,56 +65,84 @@ const FullPage = () => {
           </form>
         </section>
         <section className="main__history history">
-          <h3 className="history__heading">История конвертация</h3>
+          <h3 className="history__heading">История конвертаций</h3>
           <ul className="history__list">
             <li className="history__item history-item">
                 <span className="history-item__date">25.11.2020</span>
-                <span className="history-item__source-value">1000</span>
-                <span className="history-item__source-currency">RUB</span>
-                <span className="history-item__target-value">13,1234</span>
-                <span className="history-item__target-currency">USD</span>
+                <div className="history-item__source history-amount">
+                  <span className="history-amount__value">1000</span>
+                  <span className="history-amount__currency">RUB</span>
+                </div>
+                <div className="history-item__target history-amount">
+                  <span className="history-amount__value">13,1234</span>
+                  <span className="history-amount__currency">USD</span>
+                </div>
             </li>
             <li className="history__item history-item">
                 <span className="history-item__date">24.11.2020</span>
-                <span className="history-item__source-value">900</span>
-                <span className="history-item__source-currency">RUB</span>
-                <span className="history-item__target-value">10,1234</span>
-                <span className="history-item__target-currency">USD</span>
+                <div className="history-item__source history-amount">
+                  <span className="history-amount__value">1000</span>
+                  <span className="history-amount__currency">RUB</span>
+                </div>
+                <div className="history-item__target history-amount">
+                  <span className="history-amount__value">13,1234</span>
+                  <span className="history-amount__currency">USD</span>
+                </div>
             </li>
             <li className="history__item history-item">
                 <span className="history-item__date">23.11.2020</span>
-                <span className="history-item__source-value">800</span>
-                <span className="history-item__source-currency">RUB</span>
-                <span className="history-item__target-value">9,1234</span>
-                <span className="history-item__target-currency">USD</span>
+                <div className="history-item__source history-amount">
+                  <span className="history-amount__value">1000</span>
+                  <span className="history-amount__currency">RUB</span>
+                </div>
+                <div className="history-item__target history-amount">
+                  <span className="history-amount__value">13,1234</span>
+                  <span className="history-amount__currency">USD</span>
+                </div>
             </li>
             <li className="history__item history-item">
                 <span className="history-item__date">22.11.2020</span>
-                <span className="history-item__source-value">700</span>
-                <span className="history-item__source-currency">RUB</span>
-                <span className="history-item__target-value">8,1234</span>
-                <span className="history-item__target-currency">USD</span>
+                <div className="history-item__source history-amount">
+                  <span className="history-amount__value">1000</span>
+                  <span className="history-amount__currency">RUB</span>
+                </div>
+                <div className="history-item__target history-amount">
+                  <span className="history-amount__value">13,1234</span>
+                  <span className="history-amount__currency">USD</span>
+                </div>
             </li>
             <li className="history__item history-item">
                 <span className="history-item__date">21.11.2020</span>
-                <span className="history-item__source-value">500</span>
-                <span className="history-item__source-currency">RUB</span>
-                <span className="history-item__target-value">7,1234</span>
-                <span className="history-item__target-currency">USD</span>
+                <div className="history-item__source history-amount">
+                  <span className="history-amount__value">1000</span>
+                  <span className="history-amount__currency">RUB</span>
+                </div>
+                <div className="history-item__target history-amount">
+                  <span className="history-amount__value">13,1234</span>
+                  <span className="history-amount__currency">USD</span>
+                </div>
             </li>
             <li className="history__item history-item">
                 <span className="history-item__date">20.11.2020</span>
-                <span className="history-item__source-value">400</span>
-                <span className="history-item__source-currency">RUB</span>
-                <span className="history-item__target-value">6,1234</span>
-                <span className="history-item__target-currency">USD</span>
+                <div className="history-item__source history-amount">
+                  <span className="history-amount__value">1000</span>
+                  <span className="history-amount__currency">RUB</span>
+                </div>
+                <div className="history-item__target history-amount">
+                  <span className="history-amount__value">13,1234</span>
+                  <span className="history-amount__currency">USD</span>
+                </div>
             </li>
             <li className="history__item history-item">
                 <span className="history-item__date">19.11.2020</span>
-                <span className="history-item__source-value">300</span>
-                <span className="history-item__source-currency">RUB</span>
-                <span className="history-item__target-value">5,1234</span>
-                <span className="history-item__target-currency">USD</span>
+                <div className="history-item__source history-amount">
+                  <span className="history-amount__value">50</span>
+                  <span className="history-amount__currency">RUB</span>
+                </div>
+                <div className="history-item__target history-amount">
+                  <span className="history-amount__value">1234</span>
+                  <span className="history-amount__currency">USD</span>
+                </div>
             </li>
           </ul>
           <button className="history__reset" type="button">Очистить историю</button>

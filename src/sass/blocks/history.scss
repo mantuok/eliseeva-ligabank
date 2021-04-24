@@ -1,0 +1,40 @@
+.history {
+  margin-bottom: 110px;
+  padding-top: 40px;
+  padding-right: 70px;
+  padding-bottom: 40px;
+  padding-left: 70px;
+
+  background-color: var(--basic);
+}
+
+.history__heading {
+  margin: 0;
+  margin-bottom: 50px;
+
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.history__list {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  margin: 0;
+  margin-bottom: 17px;
+  padding: 0;
+
+  max-height: 255px;
+
+  list-style: none;
+}
+
+.history__reset {
+  padding-top: 20px;
+  padding-right: 29px;
+  padding-bottom: 20px;
+  padding-left: 28px;
+
+  @include button-contrast-style;
+}
