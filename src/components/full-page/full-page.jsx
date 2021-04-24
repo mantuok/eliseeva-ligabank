@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom';
 const FullPage = () => {
   return (
     <div className="page">
-      <header className="page__header header">
+      <header className="page__header header container">
         <img className="header__logo" alt="ЛИГА Банк" src="../img/ligabank-logo.svg" width="149" height="25" />
         <nav className="header__navigation header-navigation">
           <ul className="header-navigation__list">

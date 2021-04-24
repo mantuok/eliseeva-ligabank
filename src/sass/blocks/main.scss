@@ -2,8 +2,5 @@
   display: flex;
   flex-direction: column;
 
-  width: 1366px;
-  margin: auto;
-  padding-right: 98px;
-  padding-left: 98px;
+  @include container;
 }
