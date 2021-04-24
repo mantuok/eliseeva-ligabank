@@ -4,12 +4,12 @@
   min-height: 400px;
 
   @include container;
-  margin-bottom: 60px;
+  margin-bottom: 66px;
 
-  padding-top: 80px;
-  padding-right: 136px;
-  padding-bottom: 80px;
-  padding-left: 260px;
+  padding-top: 61px;
+  padding-right: 222px;
+  padding-bottom: 53px;
+  padding-left: 270px;
 
   background-color: var(--basic-contrast);
 
@@ -42,14 +42,14 @@
   position: relative;
 
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-rows: 3fr 3fr 4fr;
   grid-template-columns: 1fr 1fr;
 
   &::before {
     content: "";
     position: absolute;
-    top: 51px;
-    left: -110px;
+    top: 70px;
+    left: -118px;
 
     width: 150px;
     height: 269px;
@@ -60,9 +60,9 @@
   &::after {
     content: "";
     position: absolute;
-    top: 51px;
-    right: 161px;
-    
+    top: 70px;
+    right: 75px;
+
     width: 270px;
     height: 269px;
 
@@ -103,7 +103,7 @@
 
 .promo__link {
   position: relative;
-  
+  align-self: start;
   width: max-content;
   height: max-content;
 

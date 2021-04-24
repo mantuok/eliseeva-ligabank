@@ -2,13 +2,13 @@
   position: relative;
 
   @include container;
-  margin-bottom: 110px;
+  margin-bottom: 108px;
 
   &::before {
     content: "";
     position: absolute;
     top: 100px;
-    right: 673px;
+    right: 679px;
     
     width: 0;
     height: 298px;
@@ -19,7 +19,7 @@
 }
 
 .history__container {
-  padding-top: 60px;
+  padding-top: 55px;
   padding-right: 70px;
   padding-bottom: 40px;
   padding-left: 70px;
@@ -29,7 +29,7 @@
 
 .history__heading {
   margin: 0;
-  margin-bottom: 50px;
+  margin-bottom: 62px;
 
   font-size: 28px;
   font-weight: 500;
@@ -44,14 +44,17 @@
 
   @include no-style-list;
   
-  margin-bottom: 17px;
+  margin-bottom: 22px;
 }
 
 .history__reset {
   padding-top: 20px;
   padding-right: 29px;
-  padding-bottom: 20px;
-  padding-left: 28px;
+  padding-bottom: 14px;
+  padding-left: 35px;
 
   @include button-contrast-style;
+
+  font-size: 16px;
+  line-height: auto;
 }
