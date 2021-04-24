@@ -1,11 +1,13 @@
 .footer {
-    display: flex;
-    justify-content: space-between;
-    
     padding-top: 49px;
     padding-bottom: 60px;
 
     background-color: var(--basic);
-
-    @include container;
   }
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+
+  @include container;
+}

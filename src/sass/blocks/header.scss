@@ -1,13 +1,15 @@
 .header {
-  display: grid;
-  grid-template-columns: min-content 1fr max-content;
-  column-gap: 58px;
-  align-items: end;
-
   padding-top: 27px;
   padding-bottom: 39px;
 
   background-color: var(--basic);
+}
+
+.header__container {
+  display: grid;
+  grid-template-columns: min-content 1fr max-content;
+  column-gap: 58px;
+  align-items: end;
 
   @include container;
 }
