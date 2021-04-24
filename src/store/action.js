@@ -1,9 +1,9 @@
 export const ActionType = {
-  LOAD_RATES = `rates/loadRates`,
-  CLEAR_RATES = `rates/clearRates`,
-  SAVE_CONVERSION = `conversions/saveConversion`,
-  CLEAR_CONVERSIONS = `conversions/clearConversions`,
-  REMOVE_CONVERSION = `conversions/removeConversion`
+  LOAD_RATES: `rates/loadRates`,
+  CLEAR_RATES: `rates/clearRates`,
+  SAVE_CONVERSION: `conversions/saveConversion`,
+  CLEAR_CONVERSIONS: `conversions/clearConversions`,
+  REMOVE_CONVERSION: `conversions/removeConversion`
 };
 
 export const loadRates = (rates) => ({

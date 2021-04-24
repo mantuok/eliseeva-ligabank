@@ -1,4 +1,4 @@
-import ActionType from './action';
+import {ActionType} from './action';
 
 const initialState = {
   rates: [],
@@ -11,7 +11,7 @@ const reducer = (state = initialState, action) => {
       case ActionType.LOAD_RATES:
         return {
           ...state,
-          rates: state[rates].push(action.payload)
+          rates: state.rates.push(action.payload)
         };
       case ActionType.CLEAR_RATES: 
         return {
@@ -21,7 +21,7 @@ const reducer = (state = initialState, action) => {
         case ActionType.SAVE_CONVERSION:
           return {
             ...state,
-            converstions: state[converstions].push(action.payload)
+            converstions: state.converstions.push(action.payload)
           };
         case ActionType.CLEAR_CONVERSIONS:
           return {
@@ -31,7 +31,7 @@ const reducer = (state = initialState, action) => {
         case ActionType.REMOVE_CONVERSION: 
           return {
             ...state,
-            converstions: state[converstions].shift()
+            converstions: state.converstions.shift()
           };
   }
 
