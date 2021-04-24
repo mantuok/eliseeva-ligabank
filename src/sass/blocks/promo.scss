@@ -1,17 +1,15 @@
 .promo {
   position: relative;
 
-  display: grid;
-  grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr;
-
-  margin-bottom: 60px;
-  padding-top: 80px;
-  padding-right: 56px;
-  padding-bottom: 80px;
-  padding-left: 170px;
-
   min-height: 400px;
+
+  @include container;
+  margin-bottom: 60px;
+
+  padding-top: 80px;
+  padding-right: 136px;
+  padding-bottom: 80px;
+  padding-left: 260px;
 
   background-color: var(--basic-contrast);
 
@@ -19,7 +17,7 @@
     content: "";
     position: absolute;
     top: 0;
-    left: -98px;
+    left: 0;
 
     width: 150px;
     height: 100%;
@@ -31,12 +29,44 @@
     content: "";
     position: absolute;
     top: 0;
-    right: -98px;
+    right: 0;
 
     width: 298px;
     height: 100%;
 
     @include gradient-dark;
+  }
+}
+
+.promo__container {
+  position: relative;
+
+  display: grid;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 51px;
+    left: -110px;
+
+    width: 150px;
+    height: 269px;
+
+    @include gradient-light-short;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    top: 51px;
+    right: 161px;
+    
+    width: 270px;
+    height: 269px;
+
+    @include gradient-light-long;
   }
 }
 
@@ -49,27 +79,20 @@
   font-size: 54px;
   font-weight: 700;
   color: var(--basic);
-
-  // &::before {
-  //   content: "";
-  //   position: absolute;
-  //   bottom: 0;
-  //   left: 52px;
-
-  //   width: 150px;
-  //   height: 269px;
-
-  //   @include gradient-light-short;
-  // }
 }
 
 .promo__cards-image {
-  z-index: 1;
+  position: relative;
+
   grid-row: 1 / 4;
   grid-column: 2 / 3;
+
+  z-index: 1;
 }
 
 .promo__description {
+  position: relative;
+
   align-self: center;
 
   margin: 0;
@@ -79,6 +102,8 @@
 }
 
 .promo__link {
+  position: relative;
+  
   width: max-content;
   height: max-content;
 

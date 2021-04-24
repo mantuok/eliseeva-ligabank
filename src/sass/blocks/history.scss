@@ -1,19 +1,14 @@
 .history {
   position: relative;
-  margin-bottom: 110px;
-  padding-top: 40px;
-  padding-right: 70px;
-  padding-bottom: 40px;
-  padding-left: 70px;
 
-  background-color: var(--basic);
+  @include container;
+  margin-bottom: 110px;
 
   &::before {
     content: "";
     position: absolute;
-
-    top: 80px;
-    right: 574px;
+    top: 100px;
+    right: 673px;
     
     width: 0;
     height: 298px;
@@ -21,6 +16,15 @@
     border: 1px solid var(--basic-decorative);
     box-shadow: 0px 4px 4px var(--basic-decorative);
   }
+}
+
+.history__container {
+  padding-top: 60px;
+  padding-right: 70px;
+  padding-bottom: 40px;
+  padding-left: 70px;
+
+  background-color: var(--basic);
 }
 
 .history__heading {
