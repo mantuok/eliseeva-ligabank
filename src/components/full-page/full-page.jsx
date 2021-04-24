@@ -157,7 +157,7 @@ const FullPage = () => {
             <p className="company__about--copyright">Ⓒ Лига Банк, 2019</p>
           </section>
         </section>
-        <nav className="footer_navigation footer-navigation">
+        <nav className="footer__navigation footer-navigation">
           <ul className="footer-navigation__list">
             <li className="footer-navigation__item">
               <Link className="footer-navigation__link" to="/page-not-found">Услуги</Link>
@@ -174,13 +174,13 @@ const FullPage = () => {
           </ul>
         </nav>
         <section className="footer__contacts contacts">
-          <section className="contacts__short-number short-number">
-            <a className="short-number__tel" href="tel:*0904">*0904</a>
-            <p className="short-number__description">Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
+          <section className="contacts__short-number number">
+            <a className="number__tel" href="tel:*0904">*0904</a>
+            <p className="number__description">Бесплатно для абонентов МТС, Билайн, Мегафон, Теле2</p>
           </section>
-          <section className="contacts__full-number full-number">
-            <a className="full-number__tel" href="tel:88001112233">8 800 111 22 33</a>
-            <p className="full-number__description">Бесплатный для всех городов России</p>
+          <section className="contacts__full-number number">
+            <a className="number__tel" href="tel:88001112233">8 800 111 22 33</a>
+            <p className="number__description">Бесплатный для всех городов России</p>
           </section>
           <section className="contacts__social social">
             <ul className="social__list">

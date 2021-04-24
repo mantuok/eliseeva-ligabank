@@ -1,0 +1,16 @@
+.footer-navigation__list {
+  display: flex;
+  flex-direction: column;
+
+  @include no-style-list;
+}
+
+.footer-navigation__item {
+  margin-bottom: 20px;
+}
+
+.footer-navigation__link {
+  color: inherit;
+  font-weight: 500;
+  text-decoration: none;
+}

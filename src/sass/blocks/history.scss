@@ -36,13 +36,11 @@
   flex-direction: column;
   flex-wrap: wrap;
 
-  margin: 0;
-  margin-bottom: 17px;
-  padding: 0;
-
   max-height: 255px;
 
-  list-style: none;
+  @include no-style-list;
+  
+  margin-bottom: 17px;
 }
 
 .history__reset {
