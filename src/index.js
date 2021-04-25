@@ -8,10 +8,10 @@ import './sass/style.scss';
 import App from './components/app/app';
 import {reducer} from './store/reducer';
 import {createApi} from './services/api';
-import {setFailedLoad} from './store/action';
+import {ActionCreator} from './store/action';
 
 const api = createApi(
-  () => store.dispatch(setFailedLoad())
+  () => store.dispatch(ActionCreator.setFailedLoad())
 );
 
 const store = createStore(

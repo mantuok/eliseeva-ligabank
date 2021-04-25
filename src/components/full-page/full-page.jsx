@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import classnames from 'classnames';
 import dayjs from 'dayjs';
-import {today} from '../../utils/utils'
+import {today} from '../../utils/utils';
 import {fetchRates} from '../../store/api-action';
 import ErrorMessage from '../error-message/error-message';
 
