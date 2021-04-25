@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const BACKEND_URL = `https://www.cbr-xml-daily.ru/archive`
 
-export const createApi = () => {
+export const createApi = (onFailedLoad) => {
   const api = axios.create({
     baseURL: BACKEND_URL
   })
@@ -10,6 +10,7 @@ export const createApi = () => {
   const onSuccess = (response) => response;
 
   const onFail = (err) => {
+    onFailedLoad();
     throw err;
   }
 

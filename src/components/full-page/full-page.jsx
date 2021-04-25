@@ -1,16 +1,25 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import classnames from 'classnames';
 import dayjs from 'dayjs';
 import {today} from '../../utils/utils'
 import {fetchRates} from '../../store/api-action';
+import ErrorMessage from '../error-message/error-message';
 
 const FullPage = (props) => {
-  const {rates, isDataLoaded, onLoadData} = props;
+  const {rates, isDataLoaded, onLoadData, isLoadFailed} = props;
+
+  const isErrorMessageToBeShown = () => {
+    if (isLoadFailed) {
+      return <ErrorMessage />
+    }
+    return ``
+  }
 
   useEffect(() => {
       if(!isDataLoaded) {
-        onLoadData(2021, `04`, 25)
+        onLoadData(2021, `04`, 21)
       }
   }, [isDataLoaded]);
 
@@ -77,6 +86,7 @@ const FullPage = (props) => {
             </div>
             <label className="convert-form__date-label visually-hidden" htmlFor="convert-form-date">Выбрать дату</label>
             <input className="convert-form__date" id="convert-form-date" name="convert-form-date" type="date" />
+            {isErrorMessageToBeShown()}
             <button className="convert-form__submit" type="submit">Сохранить результат</button>
           </form>
         </section>
@@ -247,6 +257,7 @@ const FullPage = (props) => {
 const mapStateToProps = (state) => ({
   rates: state.rates,
   isDataLoaded: state.isDataLoaded,
+  isLoadFailed: state.isLoadFailed
 });
 
 const mapDispatchToProps = (dispatch) => ({

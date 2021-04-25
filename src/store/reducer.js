@@ -3,7 +3,8 @@ import {ActionType} from './action';
 const initialState = {
   rates: [],
   converstions: [],
-  isDataloaded: false
+  isDataloaded: false,
+  isLoadFailed: false
 };
 
 const reducer = (state = initialState, action) => {
@@ -12,6 +13,7 @@ const reducer = (state = initialState, action) => {
         return {
           ...state,
           isDataloaded: true,
+          isLoadFailed: false,
           rates: [...state.rates, action.payload]
         };
       case ActionType.CLEAR_RATES:
@@ -34,6 +36,11 @@ const reducer = (state = initialState, action) => {
           ...state,
           converstions: state.converstions.shift()
         };
+      case ActionType.SET_FAILED_LOAD:
+        return {
+          ...state,
+          isLoadFailed: true
+        }
 }
   return state;
 };
