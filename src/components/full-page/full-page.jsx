@@ -1,7 +1,17 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {fetchRates} from '../../store/api-action';
 
-const FullPage = () => {
+const FullPage = (props) => {
+  const {rates, isDataLoaded, onLoadData} = props;
+
+  useEffect(() => {
+      if(!isDataLoaded) {
+        onLoadData()
+      }
+  }, isDataLoaded);
+
   return (
     <div className="page">
       <header className="page__header header">
@@ -232,4 +242,15 @@ const FullPage = () => {
   )
 };
 
-export default FullPage;
+const mapStateToProps = (state) => ({
+  rates: state.rates,
+  isDataLoaded: state.isDataLoaded,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onLoadData() {
+    dispatch(fetchRates())
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(FullPage);

@@ -9,9 +9,11 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
       case ActionType.LOAD_RATES:
+        console.log(action.payload)
         return {
           ...state,
-          rates: state.rates.push(action.payload)
+          // rates: state.rates.push(action.payload),
+          isDataloaded: true
         };
       case ActionType.CLEAR_RATES: 
         return {
