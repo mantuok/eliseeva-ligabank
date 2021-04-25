@@ -26,6 +26,9 @@
 
   font-family: "Roboto", "Arial", sans-serif;
   font-size: 24px;
+
+  border: 1px solid var(--font-basic);
+  border-radius: 4px;
 }
 
 @mixin button-general-style {

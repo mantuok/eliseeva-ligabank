@@ -3,6 +3,8 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import classnames from 'classnames';
 import dayjs from 'dayjs';
+import Flatpickr from 'react-flatpickr';
+import 'flatpickr/dist/themes/material_green.css';
 import {today} from '../../utils/utils';
 import {fetchRates} from '../../store/api-action';
 import ErrorMessage from '../error-message/error-message';
@@ -85,7 +87,13 @@ const FullPage = (props) => {
               </select>
             </div>
             <label className="convert-form__date-label visually-hidden" htmlFor="convert-form-date">Выбрать дату</label>
-            <input className="convert-form__date" id="convert-form-date" name="convert-form-date" type="date" />
+            {/* <input className="convert-form__date" id="convert-form-date" name="convert-form-date" type="date" /> */}
+            <Flatpickr
+              className="convert-form__date"
+              options={{dateFormat: "d.m.Y"}}
+              data-enable-time
+              value={dayjs().toString()}
+             />
             {isErrorMessageToBeShown()}
             <button className="convert-form__submit" type="submit">Сохранить результат</button>
           </form>
