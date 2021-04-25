@@ -1,35 +1,38 @@
 import {RATE} from '../const';
 
-export const adaptRatesToClient = (rawData) => {
+// export const adaptRatesToClient = (rawData) => {
+
+// const usd = `USD`
+
+// console.log(rawData.payload.Valute.EUR.Value)
+
+// console.log(rawData.payload.Valute[usd].Value)
+
+
+export const adaptRates = (rawData) => {
+  // debugger
   const rates = Object.keys(RATE);
 
-  const usd = `USD`
 
-  console.log(rawData.payload.Valute.EUR.Value)
 
-  console.log(rawData.payload.Valute[usd].Value)
-
-  
-  const adaptRates = () => {
-    let adaptedRates = {
-      date: rawData.payload.Date,
-      rates: {}
-    };
-    rates.map((rate) => {
-      console.log(rawData.payload.Valute[rate].Value)
-      console.log(rate)
-      adaptedRates = ({
-        ...adaptedRates,
-        rates: {
-          ...adaptedRates.rates,
-          [rate]: rawData.payload.Valute[rate].Value
-        }
-      })
+  let adaptedRates = {
+    date: rawData.Date,
+    rates: {}
+  };
+  rates.map((rate) => {
+    // console.log(rawData.payload.Valute[rate].Value)
+    // console.log(rate)
+    adaptedRates = ({
+      ...adaptedRates,
+      rates: {
+        ...adaptedRates.rates,
+        [rate]: rawData.Valute[rate].Value
+      }
     })
+  })
 
-    return adaptedRates;
-  }
-  
-  ;
-  console.log(adaptRates())
+  return adaptedRates;
 }
+
+// console.log(adaptRates())
+// }

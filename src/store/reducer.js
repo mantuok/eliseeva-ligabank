@@ -35,9 +35,6 @@ const reducer = (state = initialState, action) => {
           converstions: state.converstions.shift()
         };
 }
-
-  console.log(state)
-
   return state;
 };
 
