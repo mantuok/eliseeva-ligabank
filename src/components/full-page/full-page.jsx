@@ -1,6 +1,8 @@
 import React, {useEffect} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import dayjs from 'dayjs';
+import {today} from '../../utils/utils'
 import {fetchRates} from '../../store/api-action';
 
 const FullPage = (props) => {
@@ -8,7 +10,7 @@ const FullPage = (props) => {
 
   useEffect(() => {
       if(!isDataLoaded) {
-        onLoadData()
+        onLoadData(2021, `04`, 25)
       }
   }, [isDataLoaded]);
 
@@ -248,8 +250,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadData() {
-    dispatch(fetchRates())
+  onLoadData(year, month, day) {
+    dispatch(fetchRates(year, month, day))
   }
 })
 

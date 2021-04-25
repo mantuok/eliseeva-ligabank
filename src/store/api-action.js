@@ -1,8 +1,8 @@
 import {loadRates} from './action';
 import {adaptRates} from '../services/adapter';
 
-export const fetchRates = (day, month, year) => (dispatch, _getState, api) => {
-  api.get('/2021/04/21/daily_json.js')
+export const fetchRates = (year, month, day) => (dispatch, _getState, api) => {
+  api.get(`/${year}/${month}/${day}/daily_json.js`)
     .then(({data}) => adaptRates(data))
     .then((data) => dispatch(loadRates(data))) 
 };
