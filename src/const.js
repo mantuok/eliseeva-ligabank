@@ -1,5 +1,5 @@
 export const RATE = {
-    // RUB: `RUB`,
+    RUB: `RUB`,
     USD: `USD`,
     EUR: `EUR`,
     GBP: `GBP`,
