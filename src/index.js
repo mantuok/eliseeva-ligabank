@@ -11,8 +11,6 @@ import {createApi} from './services/api';
 
 const api = createApi();
 
-console.log(api)
-
 const store = createStore(
   reducer,
   composeWithDevTools(

@@ -9,33 +9,34 @@ const initialState = {
 const reducer = (state = initialState, action) => {
   switch (action.type) {
       case ActionType.LOAD_RATES:
-        console.log(action.payload)
         return {
           ...state,
-          // rates: state.rates.push(action.payload),
-          isDataloaded: true
+          isDataloaded: true,
+          rates: [...state.rates, action.payload]
         };
-      case ActionType.CLEAR_RATES: 
+      case ActionType.CLEAR_RATES:
         return {
           ...state,
           rates: []
         };
-        case ActionType.SAVE_CONVERSION:
-          return {
-            ...state,
-            converstions: state.converstions.push(action.payload)
-          };
-        case ActionType.CLEAR_CONVERSIONS:
-          return {
-            ...state,
-            converstions: []
-          };
-        case ActionType.REMOVE_CONVERSION: 
-          return {
-            ...state,
-            converstions: state.converstions.shift()
-          };
-  }
+      case ActionType.SAVE_CONVERSION:
+        return {
+          ...state,
+          converstions: state.converstions.push(action.payload)
+        };
+      case ActionType.CLEAR_CONVERSIONS:
+        return {
+          ...state,
+          converstions: []
+        };
+      case ActionType.REMOVE_CONVERSION: 
+        return {
+          ...state,
+          converstions: state.converstions.shift()
+        };
+}
+
+  console.log(state)
 
   return state;
 };

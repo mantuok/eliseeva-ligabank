@@ -10,7 +10,7 @@ const FullPage = (props) => {
       if(!isDataLoaded) {
         onLoadData()
       }
-  }, isDataLoaded);
+  }, [isDataLoaded]);
 
   return (
     <div className="page">
