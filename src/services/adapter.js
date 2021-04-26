@@ -1,8 +1,8 @@
-import {RATE} from '../const';
+import {Rate} from '../const';
 
 export const adaptRates = (rawData) => {
   // debugger
-  const rates = Object.keys(RATE);
+  const rates = Object.keys(Rate);
   const rubIndex = rates.indexOf(`RUB`);
   rates.splice(rubIndex, 1);
 
@@ -12,7 +12,7 @@ export const adaptRates = (rawData) => {
       RUB: 1
     }
   };
-  
+
   rates.map((rate) => {
     adaptedRates = ({
       ...adaptedRates,

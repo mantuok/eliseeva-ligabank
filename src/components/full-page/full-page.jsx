@@ -4,10 +4,15 @@ import {connect} from 'react-redux';
 import classnames from 'classnames';
 import dayjs from 'dayjs';
 import Flatpickr from 'react-flatpickr';
-import 'flatpickr/dist/themes/material_green.css';
-import {today} from '../../utils/utils';
+import 'flatpickr/dist/themes/material_blue.css';
+import {
+splitDate,
+minDay,
+today
+} from '../../utils/utils';
 import {fetchRates} from '../../store/api-action';
 import ErrorMessage from '../error-message/error-message';
+import {DayLimit} from '../../const';
 
 const FullPage = (props) => {
   const {rates, isDataLoaded, onLoadData, isLoadFailed} = props;
@@ -21,9 +26,12 @@ const FullPage = (props) => {
 
   useEffect(() => {
       if(!isDataLoaded) {
-        onLoadData(2021, `04`, 21)
+        // onLoadData(todaySplit.year, todaySplit.month, todaySplit.day)
+        onLoadData();
       }
   }, [isDataLoaded]);
+
+  console.log(rates)
 
   return (
     <div className="page">
@@ -87,12 +95,23 @@ const FullPage = (props) => {
               </select>
             </div>
             <label className="convert-form__date-label visually-hidden" htmlFor="convert-form-date">Выбрать дату</label>
-            {/* <input className="convert-form__date" id="convert-form-date" name="convert-form-date" type="date" /> */}
             <Flatpickr
               className="convert-form__date"
-              options={{dateFormat: "d.m.Y"}}
-              data-enable-time
-              value={dayjs().toString()}
+              options={{
+                dateFormat: "d.m.Y",
+                minDate: minDay,
+                maxDate: today
+              }}
+              value={today}
+              onChange={
+                (__selectedDates, dateStr, __instance) => {
+                  onLoadData(
+                    splitDate(dateStr).year,
+                    splitDate(dateStr).month,
+                    splitDate(dateStr).day
+                  )
+                }
+              }
              />
             {isErrorMessageToBeShown()}
             <button className="convert-form__submit" type="submit">Сохранить результат</button>
