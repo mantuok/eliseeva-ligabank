@@ -1,4 +1,5 @@
 import {Rate} from '../const';
+import {formatDate} from '../utils/utils';
 
 export const adaptRates = (rawData) => {
   // debugger
@@ -7,7 +8,7 @@ export const adaptRates = (rawData) => {
   rates.splice(rubIndex, 1);
 
   let adaptedRates = {
-    date: rawData.Date,
+    date: formatDate(rawData.Date),
     rates: {
       RUB: 1
     }
@@ -22,6 +23,6 @@ export const adaptRates = (rawData) => {
       }
     })
   })
-
+  
   return adaptedRates;
 }

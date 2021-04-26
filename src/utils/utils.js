@@ -11,12 +11,6 @@ const getTwoDigit = (digit) => {
   return digit;
 }
 
-// export const todaySplit = {
-//   year: dayjs().year(),
-//   month: getTwoDigit((dayjs().month() + 1)),
-//   day: getTwoDigit(dayjs().date())
-// }
-
 export const splitDate = (rawDate = dayjs()) => {
   if (!dayjs.isDayjs(rawDate)) {
     rawDate = dayjs(rawDate, 'DD.MM.YYYY')
@@ -32,3 +26,14 @@ export const splitDate = (rawDate = dayjs()) => {
 
 export const today = dayjs().toString();
 export const minDay = dayjs().subtract(DayLimit.MIN, `day`).toString();
+
+export const formatDate = (rawDate) => {
+  return dayjs(rawDate).format(`DD.MM.YYYY`)
+}
+
+export const isRateAlreadyDownloaded = (rates, selectedDate) => {
+  return rates.some((rate) => {
+    const downloadedDate = (Object.values(rate))[0];
+    return downloadedDate === selectedDate;
+  })
+}

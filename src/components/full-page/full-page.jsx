@@ -6,9 +6,10 @@ import dayjs from 'dayjs';
 import Flatpickr from 'react-flatpickr';
 import 'flatpickr/dist/themes/material_blue.css';
 import {
-splitDate,
-minDay,
-today
+  splitDate,
+  minDay,
+  today,
+  isRateAlreadyDownloaded
 } from '../../utils/utils';
 import {fetchRates} from '../../store/api-action';
 import ErrorMessage from '../error-message/error-message';
@@ -105,11 +106,13 @@ const FullPage = (props) => {
               value={today}
               onChange={
                 (__selectedDates, dateStr, __instance) => {
-                  onLoadData(
-                    splitDate(dateStr).year,
-                    splitDate(dateStr).month,
-                    splitDate(dateStr).day
-                  )
+                  if(!isRateAlreadyDownloaded(rates, dateStr)) {
+                    onLoadData(
+                      splitDate(dateStr).year,
+                      splitDate(dateStr).month,
+                      splitDate(dateStr).day
+                    )
+                  }
                 }
               }
              />
