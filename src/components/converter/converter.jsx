@@ -18,16 +18,21 @@ import {
   ConvertionDirection,
   ConversionFields
 } from '../../const';
+import { ActionCreator } from '../../store/action';
 
 const Converter = (props) => {
-  const {rates, onLoadData, isLoadFailed} = props;
+  const {rates, isLoadFailed} = props;
   const [converstionForm, setConversionForm] = useState({
-    leftValue: undefined,
+    leftValue: ``,
     leftCurrency: `RUB`,
-    rightValue: undefined,
+    rightValue: ``,
     rightCurrency: `RUB`,
-    date: todayFormatted
+    date: todayFormatted,
+    rateAvailable: true,
   });
+
+  console.log(`isLoadFailed ${isLoadFailed}`)
+  console.log(`rateAvailable ${converstionForm.rateAvailable}`)
 
   const getCurrencyOptionsList = () => {
     return Object.keys(Rate).map((rate) => 
@@ -36,11 +41,16 @@ const Converter = (props) => {
   }
 
   const isErrorMessageToBeShown = () => {
-    if (isLoadFailed) {
+    // debugger
+    if (isLoadFailed || !converstionForm.rateAvailable) {
       return <ErrorMessage />
     }
     return ``
   };
+
+  // const getErrorMessage = () => {
+  //   return <ErrorMessage />
+  // }
 
   const handleInputChange = (evt) => {
     const {name, value} = evt.target;
@@ -48,12 +58,17 @@ const Converter = (props) => {
   };
 
   const handleDateChange = (dateValue, fieldName) => {
-    doConversion(fieldName, dateValue);
-    // console.log(rates.converstionForm.date)
-  }
+    if (isRatePerDayAvailable(dateValue)) {
+      changeRateAvailableStatus(true)
+      doConversion(fieldName, dateValue);
+      return;
+    } 
+    // debugger
+    changeRateAvailableStatus(false)
+  };
+
 
   const doConversion = (inputName, inputValue) => {
-    // debugger
     const direction = getDirection(inputName);
     const sourceData = getSources(inputName, inputValue);
     const targetCurrency = getTargetCurrency(inputName, inputValue);
@@ -117,10 +132,6 @@ const Converter = (props) => {
       case ConversionFields.DATE:
         return converstionForm.rightCurrency;
     }
-    // if (direction === ConvertionDirection.LEFT_TO_RIGHT) {
-    //   return converstionForm.rightCurrency;
-    // } 
-    // return converstionForm.leftCurrency;
   };
 
   const getRate = (currency, inputName, inputValue) => {
@@ -133,8 +144,6 @@ const Converter = (props) => {
       selectedDate = converstionForm.date;
     }
 
-    console.log(rates)
-
     rates.some((rate) => {
       if (Object.values(rate)[0] === selectedDate) {
         const currentRates = rate.rates;
@@ -142,6 +151,16 @@ const Converter = (props) => {
       }
     });
     return requestedRate;
+  }
+
+  const isRatePerDayAvailable = (date) => rates.some((rate) => Object.values(rate)[0] === date);
+
+  const changeRateAvailableStatus = (status) => {
+    // debugger
+    setConversionForm({
+      ...converstionForm,
+      rateAvailable: status
+    });
   }
 
   const calculate = (sourceValue, sourceCurrency, targetCurrency, sourceRate, targetRate) => {
@@ -251,16 +270,7 @@ const Converter = (props) => {
           value={converstionForm.date}
           name={ConversionFields.DATE}
           onChange={
-            (_selectedDates, dateStr, _instance) => {
-              // if(!isRateAlreadyDownloaded(rates, dateStr)) {
-              //   onLoadData(
-              //     splitDate(dateStr).year,
-              //     splitDate(dateStr).month,
-              //     splitDate(dateStr).day
-              //   );
-              // }
-              handleDateChange(dateStr, ConversionFields.DATE);
-            }
+            (_selectedDates, dateStr, _instance) => handleDateChange(dateStr, ConversionFields.DATE)
           }
         />
         {isErrorMessageToBeShown()}
@@ -276,9 +286,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onLoadData(year, month, day) {
-
-    // dispatch(fetchRates(year, month, day))
+  onSaveCoversion(conversionData) {
+    dispatch(ActionCreator.saveConversion(conversionData))
   }
 })
 
