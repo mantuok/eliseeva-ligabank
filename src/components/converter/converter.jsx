@@ -22,9 +22,9 @@ import {
 const Converter = (props) => {
   const {rates, onLoadData, isLoadFailed} = props;
   const [converstionForm, setConversionForm] = useState({
-    leftValue: null,
+    leftValue: undefined,
     leftCurrency: `RUB`,
-    rightValue: null,
+    rightValue: undefined,
     rightCurrency: `RUB`,
     date: todayFormatted
   });
@@ -56,7 +56,7 @@ const Converter = (props) => {
     const targetRate = getRate(targetCurrency);
     const targetValue = calculate(sourceData.value, sourceData.currency, targetCurrency, sourceRate, targetRate)
 
-    saveValues(direction, targetValue, inputValue);
+    saveValues(targetValue, inputValue, inputName);
   }
 
   const getDirection = (inputName) => {
@@ -124,19 +124,53 @@ const Converter = (props) => {
     return convertedValue;
   }
 
-  const saveValues = (direction, targetValue, inputValue) => {
-    if (direction === ConvertionDirection.LEFT_TO_RIGHT) {
-      setConversionForm({
-        ...converstionForm,
-        rightValue: targetValue,
-        leftValue: inputValue
-      });
-    } else {
-      setConversionForm({
-        ...converstionForm,
-        leftValue: targetValue,
-        rightValue: inputValue
-      });
+  // const saveValues = (direction, targetValue, inputValue) => {
+  //   if (direction === ConvertionDirection.LEFT_TO_RIGHT) {
+  //     setConversionForm({
+  //       ...converstionForm,
+  //       rightValue: targetValue,
+  //       leftValue: inputValue
+  //     });
+  //   } else {
+  //     setConversionForm({
+  //       ...converstionForm,
+  //       leftValue: targetValue,
+  //       rightValue: inputValue
+  //     });
+  //   }
+  // }
+
+  const saveValues = (targetValue, inputValue, inputName) => {
+    switch (inputName) {
+      case ConversionFields.LEFT_VALUE:
+        setConversionForm({
+          ...converstionForm,
+          rightValue: targetValue,
+          leftValue: inputValue
+        });
+        break;
+      case ConversionFields.LEFT_CURRENCY:
+        setConversionForm({
+          ...converstionForm,
+          rightValue: targetValue,
+          leftCurrency: inputValue
+        });
+        break;
+      case ConversionFields.RIGHT_VALUE:
+        setConversionForm({
+          ...converstionForm,
+          leftValue: targetValue,
+          rightValue: inputValue
+        });
+        break;
+      case ConversionFields.RIGHT_CURRENCY:
+        setConversionForm({
+          ...converstionForm,
+          leftValue: targetValue,
+          rightCurrency: inputValue
+        }); 
+        break;
+
     }
   }
 
@@ -173,7 +207,7 @@ const Converter = (props) => {
             className="convert-container__currency" 
             id="left-currency" 
             name={ConversionFields.LEFT_CURRENCY}
-            // onChange={handleInputChange}
+            onChange={handleInputChange}
           >
             {getCurrencyOptionsList()}
           </select>
@@ -193,7 +227,7 @@ const Converter = (props) => {
             className="convert-container__currency" 
             id="right-currency" 
             name={ConversionFields.RIGHT_CURRENCY}
-            // onChange={handleInputChange}
+            onChange={handleInputChange}
           >
             {getCurrencyOptionsList()}
           </select>
