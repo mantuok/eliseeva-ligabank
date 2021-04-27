@@ -34,7 +34,7 @@ const reducer = (state = initialState, action) => {
       case ActionType.REMOVE_CONVERSION: 
         return {
           ...state,
-          conversions: state.conversions.shift()
+          conversions: state.conversions.slice(1)
         };
       case ActionType.SET_FAILED_LOAD:
         return {

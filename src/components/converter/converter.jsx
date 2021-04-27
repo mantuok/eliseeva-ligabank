@@ -16,12 +16,13 @@ import ErrorMessage from '../error-message/error-message';
 import {
   Rate,
   ConvertionDirection,
-  ConversionFields
+  ConversionFields,
+  HistoryLimit
 } from '../../const';
 import { ActionCreator } from '../../store/action';
 
 const Converter = (props) => {
-  const {rates, conversions, isLoadFailed, onSaveConversion} = props;
+  const {rates, conversions, isLoadFailed, onSaveConversion, onRemoveConversion} = props;
   const [converstionForm, setConversionForm] = useState({
     leftValue: ``,
     leftCurrency: `RUB`,
@@ -201,6 +202,34 @@ const Converter = (props) => {
     }
   }
 
+  const isHistoryMaxLenght = () => conversions.length === HistoryLimit.MAX;
+
+  const limitHistoryLength = () => {
+    if (isHistoryMaxLenght()) {
+      onRemoveConversion()
+    }
+  };
+
+  const saveConversion = () => {
+    onSaveConversion({
+      date: converstionForm.date,
+      fromValue: converstionForm.leftValue,
+      fromCurrency: converstionForm.leftCurrency,
+      toValue: converstionForm.rightValue,
+      toCurrency: converstionForm.toCurrency
+    });
+  }
+
+  const resetConversionForm = () => {
+    setConversionForm({
+      ...converstionForm,
+      leftValue: ``,
+      leftCurrency: `RUB`,
+      rightValue: ``,
+      rightCurrency: `RUB`,
+    })
+  };
+
   const handleInputChange = (evt) => {
     const {name, value} = evt.target;
     doConversion(name, value);
@@ -217,26 +246,11 @@ const Converter = (props) => {
   };
 
   const handleSubmitClick = (evt) => {
-    // debugger
     evt.preventDefault();
-    onSaveConversion({
-      date: converstionForm.date,
-      fromValue: converstionForm.leftValue,
-      fromCurrency: converstionForm.leftCurrency,
-      toValue: converstionForm.rightValue,
-      toCurrency: converstionForm.toCurrency
-    });
-    setConversionForm({
-      ...converstionForm,
-      leftValue: ``,
-      leftCurrency: `RUB`,
-      rightValue: ``,
-      rightCurrency: `RUB`,
-    })
-
+    limitHistoryLength()
+    saveConversion();
+    resetConversionForm();
   }
-
-  // console.log(conversions)
 
   return (
     <section className="main__converter converter">
@@ -317,6 +331,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onSaveConversion(conversionData) {
     dispatch(ActionCreator.saveConversion(conversionData))
+  },
+  onRemoveConversion() {
+    dispatch(ActionCreator.removeConversion())
   }
 })
 

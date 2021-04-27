@@ -6,16 +6,18 @@ import {ActionCreator} from '../../store/action';
 import HistoryItem from '../history-item/history-item';
 
 const history = (props) => {
-  const {conversions, removeConversion, clearConversions} = props;
+  const {conversions, onRemoveHistoryItem, onClearHistory} = props;
 
-  console.log(conversions);
 
   const getHistoryItems = () => {
-    // return <HistoryItem />
-    // debugger
     if (conversions.length === 0) {
       return ``;
     }
+
+    // if (conversions.length === 10) {
+    //   onRemoveHistoryItem();
+    //   console.log(conversions)
+    // }
     return conversions.map((conversion) => 
         <HistoryItem 
             key={nanoid()} 
@@ -27,15 +29,25 @@ const history = (props) => {
         />)
   }
 
+  const handleClearButtonClick = (evt) => {
+    evt.preventDefault()
+    onClearHistory()
+  }
+
   return (
     <section className="main__history history">
       <div className="history__container">
         <h3 className="history__heading">История конвертаций</h3>
         <ul className="history__list">
-          {/* <HistoryItem /> */}
           {getHistoryItems()}
         </ul>
-        <button className="history__reset" type="button">Очистить историю</button>
+        <button 
+          className="history__reset" 
+          type="button"
+          onClick={handleClearButtonClick}
+          >
+            Очистить историю
+          </button>
       </div>
     </section>
   ) 

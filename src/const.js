@@ -10,6 +10,10 @@ export const DayLimit = {
   MIN: 7
 };
 
+export const HistoryLimit = {
+  MAX: 10
+}
+
 export const ConvertionDirection = {
   LEFT_TO_RIGHT: `LEFT_TO_RIGTH`,
   RIGHT_TO_LEFT: `RIGHT_TO_LEFT`
