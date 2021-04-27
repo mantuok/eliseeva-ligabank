@@ -75,36 +75,30 @@ const Converter = (props) => {
 
   const handleInputChange = (evt) => {
     const {name, value} = evt.target;
-    // setConversionForm({
-    //   ...converstionForm,
-    //   [name]: value
-    // });
-    console.log(converstionForm)
     doConversion(name, value);
   }
 
   const doConversion = (inputName, inputValue) => {
-    
-    saveInput(inputName, inputValue);
+    // debugger
+    // saveInput(inputName, inputValue);
 
     const direction = getDirection(inputName);
 
     const sourceData = getSources(inputName, inputValue);
-    // console.log(getSources(inputName, inputValue))
     const targetCurrency = getTargetCurrency(direction);
     const sourceRate = getRate(sourceData.currency);
     const targetRate = getRate(targetCurrency);
     const targetValue = calculate(sourceData.value, sourceData.currency, targetCurrency, sourceRate, targetRate)
 
-    saveTargetValue(direction, targetValue);
+    saveValues(direction, targetValue, inputValue);
   }
 
-  const saveInput = (name, value) => {
-    setConversionForm({
-      ...converstionForm,
-      [name]: value
-    });
-  };
+  // const saveInput = (name, value) => {
+  //   setConversionForm({
+  //     ...converstionForm,
+  //     [name]: value
+  //   });
+  // };
 
   const getDirection = (inputName) => {
     if (inputName === ConversionFields.LEFT_CURRENCY || inputName === ConversionFields.LEFT_VALUE) {
@@ -114,7 +108,6 @@ const Converter = (props) => {
   }
 
   const getSources = (inputName, inputValue) => {
-    // debugger
     switch (inputName) {
       case ConversionFields.LEFT_VALUE:
         return {
@@ -138,17 +131,6 @@ const Converter = (props) => {
         };
 
     }
-  //   if (direction === ConvertionDirection.LEFT_TO_RIGHT) {
-  //     if (inputName === ConversionFields.LEFT_VALUE ||)
-  //     return {
-  //       value: converstionForm.leftValue,
-  //       currency: converstionForm.leftCurrency
-  //     }
-  //   }
-  //   return {
-  //     value: converstionForm.rightValue,
-  //     currency: converstionForm.rightCurrency
-  //   }
   };
 
   const getTargetCurrency = (direction) => {
@@ -165,26 +147,28 @@ const Converter = (props) => {
     rates.some((rate) => {
       if (Object.values(rate)[0] === currentDate) {
         const currentRates = rate.rates;
-        const requestedRate = currentRates[currency]
-        
-        console.log(requestedRate)
+        requestedRate = currentRates[currency];
       }
     });
     return requestedRate;
   }
 
-  const saveTargetValue = (direction, targetValue) => {
-    // if (direction === ConvertionDirection.LEFT_TO_RIGHT) {
-    //   setConversionForm({
-    //     ...converstionForm,
-    //     rightValue: targetValue
-    //   });
-    // } else {
-    //   setConversionForm({
-    //     ...converstionForm,
-    //     leftValue: targetValue
-    //   });
-    // }
+  console.log(getRate(`EUR`))
+
+  const saveValues = (direction, targetValue, inputValue) => {
+    if (direction === ConvertionDirection.LEFT_TO_RIGHT) {
+      setConversionForm({
+        ...converstionForm,
+        rightValue: targetValue,
+        leftValue: inputValue
+      });
+    } else {
+      setConversionForm({
+        ...converstionForm,
+        leftValue: targetValue,
+        rightValue: inputValue
+      });
+    }
   }
 
   // return rates.some((rate) => {
@@ -212,6 +196,8 @@ const Converter = (props) => {
             id="left-value" 
             name={ConversionFields.LEFT_VALUE} 
             type="number"
+            // defaultValue=""
+            value={converstionForm.leftValue}
             onChange={handleInputChange}
           />
           <label className="convert-container__currency-label visually-hidden" htmlFor="left-currency">Выбрать текущую валюту</label>
@@ -226,6 +212,8 @@ const Converter = (props) => {
             id="right-value" 
             name={ConversionFields.RIGHT_VALUE} 
             type="number" 
+            // defaultValue=""
+            value={converstionForm.rightValue}
             onChange={handleInputChange}
           />
           <label className="convert-container__currency-label visually-hidden" htmlFor="right-currency">Выбрать целевую валюту</label>
