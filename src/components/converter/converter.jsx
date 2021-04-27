@@ -51,7 +51,7 @@ const Converter = (props) => {
     // debugger
     const direction = getDirection(inputName);
     const sourceData = getSources(inputName, inputValue);
-    const targetCurrency = getTargetCurrency(direction);
+    const targetCurrency = getTargetCurrency(inputName, inputValue);
     const sourceRate = getRate(sourceData.currency);
     const targetRate = getRate(targetCurrency);
     const targetValue = calculate(sourceData.value, sourceData.currency, targetCurrency, sourceRate, targetRate)
@@ -60,7 +60,10 @@ const Converter = (props) => {
   }
 
   const getDirection = (inputName) => {
-    if (inputName === ConversionFields.LEFT_CURRENCY || inputName === ConversionFields.LEFT_VALUE) {
+    if (inputName === ConversionFields.LEFT_CURRENCY || 
+            inputName === ConversionFields.LEFT_VALUE ||
+            inputName === ConversionFields.RIGHT_CURRENCY
+        ) {
       return ConvertionDirection.LEFT_TO_RIGHT
     }
     return ConvertionDirection.RIGHT_TO_LEFT
@@ -85,18 +88,27 @@ const Converter = (props) => {
         };
       case ConversionFields.RIGHT_CURRENCY:
         return {
-          value: converstionForm.rightValue,
-          currency: inputValue
+          value: converstionForm.leftValue,
+          currency: converstionForm.leftCurrency
         };
-
     }
   };
 
-  const getTargetCurrency = (direction) => {
-    if (direction === ConvertionDirection.LEFT_TO_RIGHT) {
-      return converstionForm.rightCurrency;
-    } 
-    return converstionForm.leftCurrency;
+  const getTargetCurrency = (inputName, inputValue) => {
+    switch (inputName) {
+      case ConversionFields.LEFT_VALUE:
+        return converstionForm.rightCurrency;
+      case ConversionFields.LEFT_CURRENCY:
+        return converstionForm.rightCurrency;
+      case ConversionFields.RIGHT_VALUE:
+        return converstionForm.leftCurrency;
+      case ConversionFields.RIGHT_CURRENCY:
+        return inputValue;
+    }
+    // if (direction === ConvertionDirection.LEFT_TO_RIGHT) {
+    //   return converstionForm.rightCurrency;
+    // } 
+    // return converstionForm.leftCurrency;
   };
 
   const getRate = (currency) => {
@@ -166,7 +178,7 @@ const Converter = (props) => {
       case ConversionFields.RIGHT_CURRENCY:
         setConversionForm({
           ...converstionForm,
-          leftValue: targetValue,
+          rightValue: targetValue,
           rightCurrency: inputValue
         }); 
         break;
