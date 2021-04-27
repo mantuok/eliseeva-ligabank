@@ -252,13 +252,13 @@ const Converter = (props) => {
           name={ConversionFields.DATE}
           onChange={
             (_selectedDates, dateStr, _instance) => {
-              if(!isRateAlreadyDownloaded(rates, dateStr)) {
-                onLoadData(
-                  splitDate(dateStr).year,
-                  splitDate(dateStr).month,
-                  splitDate(dateStr).day
-                );
-              }
+              // if(!isRateAlreadyDownloaded(rates, dateStr)) {
+              //   onLoadData(
+              //     splitDate(dateStr).year,
+              //     splitDate(dateStr).month,
+              //     splitDate(dateStr).day
+              //   );
+              // }
               handleDateChange(dateStr, ConversionFields.DATE);
             }
           }
@@ -278,7 +278,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   onLoadData(year, month, day) {
 
-    dispatch(fetchRates(year, month, day))
+    // dispatch(fetchRates(year, month, day))
   }
 })
 

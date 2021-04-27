@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import {connect} from 'react-redux';
 import {
-  fetchRates,
+  // fetchRates,
   fetchRatesPerPeriod
 } from '../../store/api-action';
 import Header from '../header/header';
