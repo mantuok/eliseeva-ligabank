@@ -1,89 +1,39 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {nanoid} from 'nanoid';
+import {ActionCreator} from '../../store/action';
+import HistoryItem from '../history-item/history-item';
 
-const history = () => {
+const history = (props) => {
+  const {conversions, removeConversion, clearConversions} = props;
+
+  console.log(conversions);
+
+  const getHistoryItems = () => {
+    // return <HistoryItem />
+    // debugger
+    if (conversions.length === 0) {
+      return ``;
+    }
+    return conversions.map((conversion) => 
+        <HistoryItem 
+            key={nanoid()} 
+            date={conversion.date} 
+            fromValue={conversion.fromValue}
+            fromCurrency={conversion.fromCurrency}
+            toValue={conversion.toValue} 
+            toCurrency={conversion.toCurrency}
+        />)
+  }
+
   return (
     <section className="main__history history">
       <div className="history__container">
         <h3 className="history__heading">История конвертаций</h3>
         <ul className="history__list">
-          <li className="history__item history-item">
-              <span className="history-item__date">25.11.2020</span>
-              <div className="history-item__source history-amount">
-                <span className="history-amount__value">1000</span>
-                <span className="history-amount__currency">RUB</span>
-              </div>
-              <div className="history-item__target history-amount">
-                <span className="history-amount__value">13,1234</span>
-                <span className="history-amount__currency">USD</span>
-              </div>
-          </li>
-          <li className="history__item history-item">
-              <span className="history-item__date">24.11.2020</span>
-              <div className="history-item__source history-amount">
-                <span className="history-amount__value">1000</span>
-                <span className="history-amount__currency">RUB</span>
-              </div>
-              <div className="history-item__target history-amount">
-                <span className="history-amount__value">13,1234</span>
-                <span className="history-amount__currency">USD</span>
-              </div>
-          </li>
-          <li className="history__item history-item">
-              <span className="history-item__date">23.11.2020</span>
-              <div className="history-item__source history-amount">
-                <span className="history-amount__value">1000</span>
-                <span className="history-amount__currency">RUB</span>
-              </div>
-              <div className="history-item__target history-amount">
-                <span className="history-amount__value">13,1234</span>
-                <span className="history-amount__currency">USD</span>
-              </div>
-          </li>
-          <li className="history__item history-item">
-              <span className="history-item__date">22.11.2020</span>
-              <div className="history-item__source history-amount">
-                <span className="history-amount__value">1000</span>
-                <span className="history-amount__currency">RUB</span>
-              </div>
-              <div className="history-item__target history-amount">
-                <span className="history-amount__value">13,1234</span>
-                <span className="history-amount__currency">USD</span>
-              </div>
-          </li>
-          <li className="history__item history-item">
-              <span className="history-item__date">21.11.2020</span>
-              <div className="history-item__source history-amount">
-                <span className="history-amount__value">1000</span>
-                <span className="history-amount__currency">RUB</span>
-              </div>
-              <div className="history-item__target history-amount">
-                <span className="history-amount__value">13,1234</span>
-                <span className="history-amount__currency">USD</span>
-              </div>
-          </li>
-          <li className="history__item history-item">
-              <span className="history-item__date">20.11.2020</span>
-              <div className="history-item__source history-amount">
-                <span className="history-amount__value">1000</span>
-                <span className="history-amount__currency">RUB</span>
-              </div>
-              <div className="history-item__target history-amount">
-                <span className="history-amount__value">13,1234</span>
-                <span className="history-amount__currency">USD</span>
-              </div>
-          </li>
-          <li className="history__item history-item">
-              <span className="history-item__date">19.11.2020</span>
-              <div className="history-item__source history-amount">
-                <span className="history-amount__value">50</span>
-                <span className="history-amount__currency">RUB</span>
-              </div>
-              <div className="history-item__target history-amount">
-                <span className="history-amount__value">1234</span>
-                <span className="history-amount__currency">USD</span>
-              </div>
-          </li>
+          {/* <HistoryItem /> */}
+          {getHistoryItems()}
         </ul>
         <button className="history__reset" type="button">Очистить историю</button>
       </div>
@@ -91,4 +41,17 @@ const history = () => {
   ) 
 }
 
-export default history;
+const mapStateToProps = (state) => ({
+  conversions: state.conversions
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onRemoveHistoryItem() {
+    dispatch(ActionCreator.removeConversion())
+  },
+  onClearHistory() {
+    dispatch(ActionCreator.clearConversions())
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(history);

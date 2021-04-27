@@ -2,7 +2,7 @@ import {ActionType} from './action';
 
 const initialState = {
   rates: [],
-  converstions: [],
+  conversions: [],
   isDataloaded: false,
   isLoadFailed: false
 };
@@ -24,24 +24,25 @@ const reducer = (state = initialState, action) => {
       case ActionType.SAVE_CONVERSION:
         return {
           ...state,
-          converstions: state.converstions.push(action.payload)
+          conversions: [...state.conversions, action.payload]
         };
       case ActionType.CLEAR_CONVERSIONS:
         return {
           ...state,
-          converstions: []
+          conversions: []
         };
       case ActionType.REMOVE_CONVERSION: 
         return {
           ...state,
-          converstions: state.converstions.shift()
+          conversions: state.conversions.shift()
         };
       case ActionType.SET_FAILED_LOAD:
         return {
           ...state,
           isLoadFailed: true
         }
-}
+  }
+  console.log(state.conversions)
   return state;
 };
 

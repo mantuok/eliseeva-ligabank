@@ -21,7 +21,7 @@ import {
 import { ActionCreator } from '../../store/action';
 
 const Converter = (props) => {
-  const {rates, isLoadFailed} = props;
+  const {rates, conversions, isLoadFailed, onSaveConversion} = props;
   const [converstionForm, setConversionForm] = useState({
     leftValue: ``,
     leftCurrency: `RUB`,
@@ -31,8 +31,10 @@ const Converter = (props) => {
     rateAvailable: true,
   });
 
-  console.log(`isLoadFailed ${isLoadFailed}`)
-  console.log(`rateAvailable ${converstionForm.rateAvailable}`)
+  console.log()
+
+  // console.log(`isLoadFailed ${isLoadFailed}`)
+  // console.log(`rateAvailable ${converstionForm.rateAvailable}`)
 
   const getCurrencyOptionsList = () => {
     return Object.keys(Rate).map((rate) => 
@@ -51,22 +53,6 @@ const Converter = (props) => {
   // const getErrorMessage = () => {
   //   return <ErrorMessage />
   // }
-
-  const handleInputChange = (evt) => {
-    const {name, value} = evt.target;
-    doConversion(name, value);
-  };
-
-  const handleDateChange = (dateValue, fieldName) => {
-    if (isRatePerDayAvailable(dateValue)) {
-      changeRateAvailableStatus(true)
-      doConversion(fieldName, dateValue);
-      return;
-    } 
-    // debugger
-    changeRateAvailableStatus(false)
-  };
-
 
   const doConversion = (inputName, inputValue) => {
     const direction = getDirection(inputName);
@@ -215,6 +201,43 @@ const Converter = (props) => {
     }
   }
 
+  const handleInputChange = (evt) => {
+    const {name, value} = evt.target;
+    doConversion(name, value);
+  };
+
+  const handleDateChange = (dateValue, fieldName) => {
+    if (isRatePerDayAvailable(dateValue)) {
+      changeRateAvailableStatus(true)
+      doConversion(fieldName, dateValue);
+      return;
+    } 
+    // debugger
+    changeRateAvailableStatus(false)
+  };
+
+  const handleSubmitClick = (evt) => {
+    // debugger
+    evt.preventDefault();
+    onSaveConversion({
+      date: converstionForm.date,
+      fromValue: converstionForm.leftValue,
+      fromCurrency: converstionForm.leftCurrency,
+      toValue: converstionForm.rightValue,
+      toCurrency: converstionForm.toCurrency
+    });
+    setConversionForm({
+      ...converstionForm,
+      leftValue: ``,
+      leftCurrency: `RUB`,
+      rightValue: ``,
+      rightCurrency: `RUB`,
+    })
+
+  }
+
+  // console.log(conversions)
+
   return (
     <section className="main__converter converter">
       <h2 className="converter__heading">Конвертер валют</h2>
@@ -274,7 +297,12 @@ const Converter = (props) => {
           }
         />
         {isErrorMessageToBeShown()}
-        <button className="convert-form__submit" type="submit">Сохранить результат</button>
+        <button 
+          className="convert-form__submit" 
+          type="submit"
+          onClick={handleSubmitClick}
+        >
+            Сохранить результат</button>
       </form>
     </section>
   )
@@ -282,11 +310,12 @@ const Converter = (props) => {
 
 const mapStateToProps = (state) => ({
   rates: state.rates,
+  conversions: state.conversions,
   isLoadFailed: state.isLoadFailed
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onSaveCoversion(conversionData) {
+  onSaveConversion(conversionData) {
     dispatch(ActionCreator.saveConversion(conversionData))
   }
 })
