@@ -19,5 +19,6 @@ export const ConversionFields = {
   LEFT_VALUE: `leftValue`,
   LEFT_CURRENCY: `leftCurrency`,
   RIGHT_VALUE: `rightValue`,
-  RIGHT_CURRENCY: `rightCurrency`
+  RIGHT_CURRENCY: `rightCurrency`,
+  DATE: `date`
 }

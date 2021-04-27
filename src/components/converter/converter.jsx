@@ -45,15 +45,20 @@ const Converter = (props) => {
   const handleInputChange = (evt) => {
     const {name, value} = evt.target;
     doConversion(name, value);
+  };
+
+  const handleDateChange = (dateValue, fieldName) => {
+    doConversion(fieldName, dateValue);
+    // console.log(rates.converstionForm.date)
   }
 
   const doConversion = (inputName, inputValue) => {
-    // debugger
+    debugger
     const direction = getDirection(inputName);
     const sourceData = getSources(inputName, inputValue);
     const targetCurrency = getTargetCurrency(inputName, inputValue);
-    const sourceRate = getRate(sourceData.currency);
-    const targetRate = getRate(targetCurrency);
+    const sourceRate = getRate(sourceData.currency, inputName, inputValue);
+    const targetRate = getRate(targetCurrency, inputName, inputValue);
     const targetValue = calculate(sourceData.value, sourceData.currency, targetCurrency, sourceRate, targetRate)
 
     saveValues(targetValue, inputValue, inputName);
@@ -91,8 +96,15 @@ const Converter = (props) => {
           value: converstionForm.leftValue,
           currency: converstionForm.leftCurrency
         };
+      case ConversionFields.DATE: 
+        return {
+          value: converstionForm.leftValue,
+          currency: converstionForm.leftCurrency
+        };
     }
   };
+
+  console.log(ConversionFields.DATE)
 
   const getTargetCurrency = (inputName, inputValue) => {
     switch (inputName) {
@@ -104,6 +116,8 @@ const Converter = (props) => {
         return converstionForm.leftCurrency;
       case ConversionFields.RIGHT_CURRENCY:
         return inputValue;
+      case ConversionFields.DATE:
+        return converstionForm.rightCurrency;
     }
     // if (direction === ConvertionDirection.LEFT_TO_RIGHT) {
     //   return converstionForm.rightCurrency;
@@ -111,12 +125,20 @@ const Converter = (props) => {
     // return converstionForm.leftCurrency;
   };
 
-  const getRate = (currency) => {
-    const currentDate = converstionForm.date;
+  const getRate = (currency, inputName, inputValue) => {
+    let selectedDate = ``;
     let requestedRate = ``;
+    
+    if (inputName === ConversionFields.DATE) {
+      selectedDate = inputValue;
+    } else {
+      selectedDate = converstionForm.date;
+    }
+
+    console.log(rates)
 
     rates.some((rate) => {
-      if (Object.values(rate)[0] === currentDate) {
+      if (Object.values(rate)[0] === selectedDate) {
         const currentRates = rate.rates;
         requestedRate = currentRates[currency];
       }
@@ -135,22 +157,6 @@ const Converter = (props) => {
   
     return convertedValue;
   }
-
-  // const saveValues = (direction, targetValue, inputValue) => {
-  //   if (direction === ConvertionDirection.LEFT_TO_RIGHT) {
-  //     setConversionForm({
-  //       ...converstionForm,
-  //       rightValue: targetValue,
-  //       leftValue: inputValue
-  //     });
-  //   } else {
-  //     setConversionForm({
-  //       ...converstionForm,
-  //       leftValue: targetValue,
-  //       rightValue: inputValue
-  //     });
-  //   }
-  // }
 
   const saveValues = (targetValue, inputValue, inputName) => {
     switch (inputName) {
@@ -182,22 +188,14 @@ const Converter = (props) => {
           rightCurrency: inputValue
         }); 
         break;
-
+      case ConversionFields.DATE:
+        setConversionForm({
+          ...converstionForm,
+          rightValue: targetValue,
+          date: inputValue
+        }); 
+        break;
     }
-  }
-
-  // return rates.some((rate) => {
-  //   const downloadedDate = (Object.values(rate))[0];
-  //   return downloadedDate === selectedDate;
-
-
-  const handleDateChange = (value) => {
-    console.log(value)
-    setConversionForm({
-      ...converstionForm,
-      date: value
-    })
-    // console.log(rates.converstionForm.date)
   }
 
   return (
@@ -252,7 +250,8 @@ const Converter = (props) => {
             minDate: minDay,
             maxDate: today
           }}
-          value={today}
+          value={converstionForm.date}
+          name={ConversionFields.DATE}
           onChange={
             (_selectedDates, dateStr, _instance) => {
               if(!isRateAlreadyDownloaded(rates, dateStr)) {
@@ -261,8 +260,8 @@ const Converter = (props) => {
                   splitDate(dateStr).month,
                   splitDate(dateStr).day
                 );
-                handleDateChange(dateStr);
               }
+              handleDateChange(dateStr, ConversionFields.DATE);
             }
           }
         />
