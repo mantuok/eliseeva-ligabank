@@ -203,6 +203,8 @@ const Converter = (props) => {
     }
   }
 
+  const isInputNotEmpty = () => conversionForm.leftValue !== `` || conversionForm.rightValue !== ``
+
   const isHistoryMaxLenght = () => conversions.length === HistoryLimit.MAX;
 
   const limitHistoryLength = () => {
@@ -247,10 +249,13 @@ const Converter = (props) => {
   };
 
   const handleSubmitClick = (evt) => {
+    // debugger
     evt.preventDefault();
-    limitHistoryLength()
-    saveConversion();
-    resetConversionForm();
+    if (isInputNotEmpty()) {
+      limitHistoryLength()
+      saveConversion();
+      resetConversionForm();
+    }
   }
 
   return (
