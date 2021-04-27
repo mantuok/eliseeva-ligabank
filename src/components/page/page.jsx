@@ -17,8 +17,6 @@ const Page = (props) => {
       }
   }, [isDataLoaded]);
 
-  console.log(rates)
-
   return (
     <div className="page">
       <Header />

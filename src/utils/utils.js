@@ -25,6 +25,8 @@ export const splitDate = (rawDate = dayjs()) => {
 }
 
 export const today = dayjs().toString();
+export const todayFormatted = dayjs().format(`DD.MM.YYYY`);
+// export const today = dayjs().format(`DD.MM.YYYY`);
 export const minDay = dayjs().subtract(DayLimit.MIN, `day`).toString();
 
 export const formatDate = (rawDate) => {
