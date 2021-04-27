@@ -53,7 +53,7 @@ const Converter = (props) => {
   }
 
   const doConversion = (inputName, inputValue) => {
-    debugger
+    // debugger
     const direction = getDirection(inputName);
     const sourceData = getSources(inputName, inputValue);
     const targetCurrency = getTargetCurrency(inputName, inputValue);
@@ -103,8 +103,6 @@ const Converter = (props) => {
         };
     }
   };
-
-  console.log(ConversionFields.DATE)
 
   const getTargetCurrency = (inputName, inputValue) => {
     switch (inputName) {
@@ -279,6 +277,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadData(year, month, day) {
+
     dispatch(fetchRates(year, month, day))
   }
 })

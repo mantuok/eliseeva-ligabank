@@ -24,9 +24,17 @@ export const splitDate = (rawDate = dayjs()) => {
   return splittedDated;
 }
 
+export const getDatesList = () => {
+  const datesList = [];
+  for (let i = 0; i <= DayLimit.MIN; i++) {
+    let currentDate = dayjs().subtract(i, `day`).format(`DD.MM.YYYY`);
+    datesList.push(currentDate);
+  }
+  return datesList;
+}
+
 export const today = dayjs().toString();
 export const todayFormatted = dayjs().format(`DD.MM.YYYY`);
-// export const today = dayjs().format(`DD.MM.YYYY`);
 export const minDay = dayjs().subtract(DayLimit.MIN, `day`).toString();
 
 export const formatDate = (rawDate) => {
