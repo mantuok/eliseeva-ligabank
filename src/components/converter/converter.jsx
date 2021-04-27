@@ -29,37 +29,6 @@ const Converter = (props) => {
     date: todayFormatted
   });
 
-
-   const calculate = (sourceValue, sourceCurrency, targetCurrency, sourceRate, targetRate) => {
-
-    if (sourceCurrency === targetCurrency) {
-      return sourceValue;
-    }
-
-    const rubValue = sourceValue * sourceRate
-    const convertedValue = rubValue / targetRate
-  
-    return convertedValue;
-  }
-
-  // const calculate = (sourceValue, sourceCurrency, targetCurrency, sourceRate, targetRate) => {
-  //   // const sourceRate = rates.date[converstionForm.sourceCurrency]
-
-  //   if (sourceCurrency === targetCurrency) {
-  //     return;
-  //   }
-  
-  //   const rubSource = sourceValue * sourceRate
-  //   const convertedValue = rubSource / targetRate
-
-  //   // setConversionForm({
-  //   //   ...converstionForm,
-  //   //   [name]: value
-  //   // })
-  
-  //   // return convertedValue;
-  // }
-
   const getCurrencyOptionsList = () => {
     return Object.keys(Rate).map((rate) => 
      <option value={rate} key={rate}>{rate}</option>
@@ -80,10 +49,7 @@ const Converter = (props) => {
 
   const doConversion = (inputName, inputValue) => {
     // debugger
-    // saveInput(inputName, inputValue);
-
     const direction = getDirection(inputName);
-
     const sourceData = getSources(inputName, inputValue);
     const targetCurrency = getTargetCurrency(direction);
     const sourceRate = getRate(sourceData.currency);
@@ -92,13 +58,6 @@ const Converter = (props) => {
 
     saveValues(direction, targetValue, inputValue);
   }
-
-  // const saveInput = (name, value) => {
-  //   setConversionForm({
-  //     ...converstionForm,
-  //     [name]: value
-  //   });
-  // };
 
   const getDirection = (inputName) => {
     if (inputName === ConversionFields.LEFT_CURRENCY || inputName === ConversionFields.LEFT_VALUE) {
@@ -153,7 +112,17 @@ const Converter = (props) => {
     return requestedRate;
   }
 
-  console.log(getRate(`EUR`))
+  const calculate = (sourceValue, sourceCurrency, targetCurrency, sourceRate, targetRate) => {
+
+    if (sourceCurrency === targetCurrency) {
+      return sourceValue;
+    }
+
+    const rubValue = sourceValue * sourceRate
+    const convertedValue = rubValue / targetRate
+  
+    return convertedValue;
+  }
 
   const saveValues = (direction, targetValue, inputValue) => {
     if (direction === ConvertionDirection.LEFT_TO_RIGHT) {
@@ -196,12 +165,16 @@ const Converter = (props) => {
             id="left-value" 
             name={ConversionFields.LEFT_VALUE} 
             type="number"
-            // defaultValue=""
             value={converstionForm.leftValue}
             onChange={handleInputChange}
           />
           <label className="convert-container__currency-label visually-hidden" htmlFor="left-currency">Выбрать текущую валюту</label>
-          <select className="convert-container__currency" id="left-currency" name={ConversionFields.LEFT_CURRENCY}>
+          <select 
+            className="convert-container__currency" 
+            id="left-currency" 
+            name={ConversionFields.LEFT_CURRENCY}
+            // onChange={handleInputChange}
+          >
             {getCurrencyOptionsList()}
           </select>
         </div>
@@ -212,12 +185,16 @@ const Converter = (props) => {
             id="right-value" 
             name={ConversionFields.RIGHT_VALUE} 
             type="number" 
-            // defaultValue=""
             value={converstionForm.rightValue}
             onChange={handleInputChange}
           />
           <label className="convert-container__currency-label visually-hidden" htmlFor="right-currency">Выбрать целевую валюту</label>
-          <select className="convert-container__currency" id="right-currency" name={ConversionFields.RIGHT_CURRENCY}>
+          <select 
+            className="convert-container__currency" 
+            id="right-currency" 
+            name={ConversionFields.RIGHT_CURRENCY}
+            // onChange={handleInputChange}
+          >
             {getCurrencyOptionsList()}
           </select>
         </div>
