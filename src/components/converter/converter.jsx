@@ -277,6 +277,7 @@ const Converter = (props) => {
             className="convert-container__currency" 
             id="left-currency" 
             name={ConversionFields.LEFT_CURRENCY}
+            value={conversionForm.leftCurrency}
             onChange={handleInputChange}
           >
             {getCurrencyOptionsList()}
@@ -297,6 +298,7 @@ const Converter = (props) => {
             className="convert-container__currency" 
             id="right-currency" 
             name={ConversionFields.RIGHT_CURRENCY}
+            value={conversionForm.rightCurrency}
             onChange={handleInputChange}
           >
             {getCurrencyOptionsList()}
