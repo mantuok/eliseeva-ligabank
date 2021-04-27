@@ -23,7 +23,7 @@ import { ActionCreator } from '../../store/action';
 
 const Converter = (props) => {
   const {rates, conversions, isLoadFailed, onSaveConversion, onRemoveConversion} = props;
-  const [converstionForm, setConversionForm] = useState({
+  const [conversionForm, setConversionForm] = useState({
     leftValue: ``,
     leftCurrency: `RUB`,
     rightValue: ``,
@@ -35,7 +35,7 @@ const Converter = (props) => {
   console.log()
 
   // console.log(`isLoadFailed ${isLoadFailed}`)
-  // console.log(`rateAvailable ${converstionForm.rateAvailable}`)
+  // console.log(`rateAvailable ${conversionForm.rateAvailable}`)
 
   const getCurrencyOptionsList = () => {
     return Object.keys(Rate).map((rate) => 
@@ -45,7 +45,7 @@ const Converter = (props) => {
 
   const isErrorMessageToBeShown = () => {
     // debugger
-    if (isLoadFailed || !converstionForm.rateAvailable) {
+    if (isLoadFailed || !conversionForm.rateAvailable) {
       return <ErrorMessage />
     }
     return ``
@@ -81,27 +81,27 @@ const Converter = (props) => {
       case ConversionFields.LEFT_VALUE:
         return {
           value: inputValue,
-          currency: converstionForm.leftCurrency
+          currency: conversionForm.leftCurrency
         };
       case ConversionFields.LEFT_CURRENCY:
         return {
-          value: converstionForm.leftValue,
+          value: conversionForm.leftValue,
           currency: inputValue
         };
       case ConversionFields.RIGHT_VALUE:
         return {
           value: inputValue,
-          currency: converstionForm.rightCurrency
+          currency: conversionForm.rightCurrency
         };
       case ConversionFields.RIGHT_CURRENCY:
         return {
-          value: converstionForm.leftValue,
-          currency: converstionForm.leftCurrency
+          value: conversionForm.leftValue,
+          currency: conversionForm.leftCurrency
         };
       case ConversionFields.DATE: 
         return {
-          value: converstionForm.leftValue,
-          currency: converstionForm.leftCurrency
+          value: conversionForm.leftValue,
+          currency: conversionForm.leftCurrency
         };
     }
   };
@@ -109,15 +109,15 @@ const Converter = (props) => {
   const getTargetCurrency = (inputName, inputValue) => {
     switch (inputName) {
       case ConversionFields.LEFT_VALUE:
-        return converstionForm.rightCurrency;
+        return conversionForm.rightCurrency;
       case ConversionFields.LEFT_CURRENCY:
-        return converstionForm.rightCurrency;
+        return conversionForm.rightCurrency;
       case ConversionFields.RIGHT_VALUE:
-        return converstionForm.leftCurrency;
+        return conversionForm.leftCurrency;
       case ConversionFields.RIGHT_CURRENCY:
         return inputValue;
       case ConversionFields.DATE:
-        return converstionForm.rightCurrency;
+        return conversionForm.rightCurrency;
     }
   };
 
@@ -128,7 +128,7 @@ const Converter = (props) => {
     if (inputName === ConversionFields.DATE) {
       selectedDate = inputValue;
     } else {
-      selectedDate = converstionForm.date;
+      selectedDate = conversionForm.date;
     }
 
     rates.some((rate) => {
@@ -145,7 +145,7 @@ const Converter = (props) => {
   const changeRateAvailableStatus = (status) => {
     // debugger
     setConversionForm({
-      ...converstionForm,
+      ...conversionForm,
       rateAvailable: status
     });
   }
@@ -156,45 +156,46 @@ const Converter = (props) => {
       return sourceValue;
     }
 
-    const rubValue = sourceValue * sourceRate
-    const convertedValue = rubValue / targetRate
+    const rubValue = sourceValue * sourceRate;
+    const convertedValue = Math.round(rubValue / targetRate);
   
     return convertedValue;
   }
 
   const saveValues = (targetValue, inputValue, inputName) => {
+    // debugger
     switch (inputName) {
       case ConversionFields.LEFT_VALUE:
         setConversionForm({
-          ...converstionForm,
+          ...conversionForm,
           rightValue: targetValue,
           leftValue: inputValue
         });
         break;
       case ConversionFields.LEFT_CURRENCY:
         setConversionForm({
-          ...converstionForm,
+          ...conversionForm,
           rightValue: targetValue,
           leftCurrency: inputValue
         });
         break;
       case ConversionFields.RIGHT_VALUE:
         setConversionForm({
-          ...converstionForm,
+          ...conversionForm,
           leftValue: targetValue,
           rightValue: inputValue
         });
         break;
       case ConversionFields.RIGHT_CURRENCY:
         setConversionForm({
-          ...converstionForm,
+          ...conversionForm,
           rightValue: targetValue,
           rightCurrency: inputValue
         }); 
         break;
       case ConversionFields.DATE:
         setConversionForm({
-          ...converstionForm,
+          ...conversionForm,
           rightValue: targetValue,
           date: inputValue
         }); 
@@ -212,17 +213,17 @@ const Converter = (props) => {
 
   const saveConversion = () => {
     onSaveConversion({
-      date: converstionForm.date,
-      fromValue: converstionForm.leftValue,
-      fromCurrency: converstionForm.leftCurrency,
-      toValue: converstionForm.rightValue,
-      toCurrency: converstionForm.toCurrency
+      date: conversionForm.date,
+      fromValue: conversionForm.leftValue,
+      fromCurrency: conversionForm.leftCurrency,
+      toValue: conversionForm.rightValue,
+      toCurrency: conversionForm.rightCurrency
     });
   }
 
   const resetConversionForm = () => {
     setConversionForm({
-      ...converstionForm,
+      ...conversionForm,
       leftValue: ``,
       leftCurrency: `RUB`,
       rightValue: ``,
@@ -263,7 +264,7 @@ const Converter = (props) => {
             id="left-value" 
             name={ConversionFields.LEFT_VALUE} 
             type="number"
-            value={converstionForm.leftValue}
+            value={conversionForm.leftValue}
             onChange={handleInputChange}
           />
           <label className="convert-container__currency-label visually-hidden" htmlFor="left-currency">Выбрать текущую валюту</label>
@@ -283,7 +284,7 @@ const Converter = (props) => {
             id="right-value" 
             name={ConversionFields.RIGHT_VALUE} 
             type="number" 
-            value={converstionForm.rightValue}
+            value={conversionForm.rightValue}
             onChange={handleInputChange}
           />
           <label className="convert-container__currency-label visually-hidden" htmlFor="right-currency">Выбрать целевую валюту</label>
@@ -304,7 +305,7 @@ const Converter = (props) => {
             minDate: minDay,
             maxDate: today
           }}
-          value={converstionForm.date}
+          value={conversionForm.date}
           name={ConversionFields.DATE}
           onChange={
             (_selectedDates, dateStr, _instance) => handleDateChange(dateStr, ConversionFields.DATE)

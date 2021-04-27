@@ -13,11 +13,7 @@ const history = (props) => {
     if (conversions.length === 0) {
       return ``;
     }
-
-    // if (conversions.length === 10) {
-    //   onRemoveHistoryItem();
-    //   console.log(conversions)
-    // }
+    
     return conversions.map((conversion) => 
         <HistoryItem 
             key={nanoid()} 
@@ -47,7 +43,7 @@ const history = (props) => {
           onClick={handleClearButtonClick}
           >
             Очистить историю
-          </button>
+        </button>
       </div>
     </section>
   ) 

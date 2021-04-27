@@ -3,18 +3,20 @@
   display: flex;
   justify-content: space-between;
 
-  width: 381px;
+  width: 401px;
   margin-right: 259px;
   margin-bottom: 28px;
 
   font-size: 18px;
+}
 
-  &::before {
+.history-item__source {
+  &::after {
     content: "";
     position: absolute;
 
     top: 0;
-    right: 112px;
+    right: 99px;
 
     width: 40px;
     height: 19px;
