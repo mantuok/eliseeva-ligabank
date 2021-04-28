@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 const Page = (props) => {
   const {isDataLoaded, onLoadData} = props;
 
+  console.log(isDataLoaded)
+
   useEffect(() => {
       if(!isDataLoaded) {
        onLoadData()

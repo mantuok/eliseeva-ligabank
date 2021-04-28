@@ -15,7 +15,7 @@ const Header = () => {
                 <Link className="header-navigation__link" to="/page-not-found">Рассчитать кредит</Link>
             </li>
             <li className="header-navigation__item header-navigation__item--active">
-                <Link className="header-navigation__link header-navigation__link--active">Конвертер валют</Link>
+                <Link className="header-navigation__link header-navigation__link--active" to="">Конвертер валют</Link>
             </li>
             <li className="header-navigation__item">
                 <Link className="header-navigation__link" to="/page-not-found">Контакты</Link>

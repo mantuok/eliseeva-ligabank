@@ -9,3 +9,7 @@
 .social__item {
   margin-right: 15px;
 }
+
+.social__link {
+  @include opacity-on-hover;
+}

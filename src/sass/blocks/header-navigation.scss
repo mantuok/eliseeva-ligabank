@@ -13,7 +13,14 @@
   color: var(--font-basic);
   text-decoration: none;
 
+  @include opacity-on-hover;
+
   &--active {
-    color: var(--basic-contrast)
+    color: var(--basic-contrast);
+    cursor: auto;
+
+    &:hover {
+      opacity: 1;
+    }
   }
 }

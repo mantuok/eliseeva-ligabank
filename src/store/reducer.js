@@ -3,7 +3,7 @@ import {ActionType} from './action';
 const initialState = {
   rates: [],
   conversions: [],
-  isDataloaded: false,
+  isDataLoaded: false,
   isLoadFailed: false
 };
 
@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
       case ActionType.LOAD_RATES:
         return {
           ...state,
-          isDataloaded: true,
+          isDataLoaded: true,
           isLoadFailed: false,
           rates: action.payload
         };

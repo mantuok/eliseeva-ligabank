@@ -39,6 +39,8 @@
   border-radius: 4px;
 
   cursor: pointer;
+
+  @include opacity-on-hover;
 }
 
 @mixin button-basic-style {
@@ -60,4 +62,10 @@
   padding: 0;
 
   list-style-type: none;
+}
+
+@mixin opacity-on-hover {
+  &:hover { 
+    opacity: 0.5;
+  }
 }

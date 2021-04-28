@@ -1,6 +1,5 @@
 .number {
   width: 167px;
-  // margin-right: 80px;
 }
 
 .number__tel {
@@ -8,6 +7,8 @@
   font-weight: 500;
   
   text-decoration: none;
+
+  @include opacity-on-hover;
 }
 
 .number__description {

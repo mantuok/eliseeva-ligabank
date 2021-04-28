@@ -8,6 +8,8 @@
 
   color: var(--font-basic);
 
+  @include opacity-on-hover;
+  
   &::before {
     content: "";
     position: absolute;
