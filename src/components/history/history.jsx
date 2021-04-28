@@ -1,13 +1,13 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {nanoid} from 'nanoid';
 import {ActionCreator} from '../../store/action';
 import HistoryItem from '../history-item/history-item';
+import PropTypes from 'prop-types';
+import {conversionsPropTypes} from '../../utils/props-validation';
 
 const history = (props) => {
-  const {conversions, onRemoveHistoryItem, onClearHistory} = props;
-
+  const {conversions, onClearHistory} = props;
 
   const getHistoryItems = () => {
     if (conversions.length === 0) {
@@ -54,12 +54,14 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  onRemoveHistoryItem() {
-    dispatch(ActionCreator.removeConversion())
-  },
   onClearHistory() {
-    dispatch(ActionCreator.clearConversions())
+    dispatch(ActionCreator.clearConversions());
   }
-})
+});
+
+History.propTypes = {
+  onClearHistory: PropTypes.func.isRequired,
+  conversions: conversionsPropTypes
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(history);

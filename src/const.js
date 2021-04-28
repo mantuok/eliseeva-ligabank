@@ -12,12 +12,12 @@ export const DayLimit = {
 
 export const HistoryLimit = {
   MAX: 10
-}
+};
 
 export const ConvertionDirection = {
   LEFT_TO_RIGHT: `LEFT_TO_RIGTH`,
   RIGHT_TO_LEFT: `RIGHT_TO_LEFT`
-}
+};
 
 export const ConversionFields = {
   LEFT_VALUE: `leftValue`,
@@ -25,4 +25,6 @@ export const ConversionFields = {
   RIGHT_VALUE: `rightValue`,
   RIGHT_CURRENCY: `rightCurrency`,
   DATE: `date`
-}
+};
+
+export const DEFAULT_RATE = 1;

@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const HistoryItem = (props) => {
   const {date, fromValue, fromCurrency, toValue, toCurrency} = props;
@@ -15,6 +16,14 @@ const HistoryItem = (props) => {
       </div>
     </li>
   );
+};
+
+HistoryItem.propTypes = {
+  date: PropTypes.string.isRequired,
+  fromValue: PropTypes.number.isRequired,
+  fromCurrency: PropTypes.string.isRequired,
+  toValue: PropTypes.number.isRequired,
+  toCurrency: PropTypes.string.isRequired
 };
 
 export default HistoryItem;

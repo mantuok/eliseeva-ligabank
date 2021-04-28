@@ -1,41 +1,36 @@
 import React, {useState} from 'react';
 import {connect} from 'react-redux';
-import classnames from 'classnames';
 import Flatpickr from 'react-flatpickr';
 import 'flatpickr/dist/themes/material_blue.css';
 import {
-  splitDate,
   minDay,
   today,
   todayFormatted,
-  isRateAlreadyDownloaded
 } from '../../utils/utils';
-// import {calculation, calculate} from '../../utils/calculation'
-import {fetchRates} from '../../store/api-action';
 import ErrorMessage from '../error-message/error-message';
 import {
   Rate,
-  ConvertionDirection,
   ConversionFields,
   HistoryLimit
 } from '../../const';
-import { ActionCreator } from '../../store/action';
+import {ActionCreator} from '../../store/action';
+import PropTypes from 'prop-types';
+import {
+  conversionsPropTypes,
+  ratesPropTypes
+} from '../../utils/props-validation';
 
 const Converter = (props) => {
   const {rates, conversions, isLoadFailed, onSaveConversion, onRemoveConversion} = props;
+  
   const [conversionForm, setConversionForm] = useState({
     leftValue: ``,
     leftCurrency: `RUB`,
     rightValue: ``,
     rightCurrency: `RUB`,
     date: todayFormatted,
-    rateAvailable: true,
+    isRateAvailable: true,
   });
-
-  console.log()
-
-  // console.log(`isLoadFailed ${isLoadFailed}`)
-  // console.log(`rateAvailable ${conversionForm.rateAvailable}`)
 
   const getCurrencyOptionsList = () => {
     return Object.keys(Rate).map((rate) => 
@@ -44,19 +39,13 @@ const Converter = (props) => {
   }
 
   const isErrorMessageToBeShown = () => {
-    // debugger
-    if (isLoadFailed || !conversionForm.rateAvailable) {
+    if (isLoadFailed || !conversionForm.isRateAvailable) {
       return <ErrorMessage />
     }
     return ``
   };
 
-  // const getErrorMessage = () => {
-  //   return <ErrorMessage />
-  // }
-
   const doConversion = (inputName, inputValue) => {
-    const direction = getDirection(inputName);
     const sourceData = getSources(inputName, inputValue);
     const targetCurrency = getTargetCurrency(inputName, inputValue);
     const sourceRate = getRate(sourceData.currency, inputName, inputValue);
@@ -64,16 +53,6 @@ const Converter = (props) => {
     const targetValue = calculate(sourceData.value, sourceData.currency, targetCurrency, sourceRate, targetRate)
 
     saveValues(targetValue, inputValue, inputName);
-  }
-
-  const getDirection = (inputName) => {
-    if (inputName === ConversionFields.LEFT_CURRENCY || 
-            inputName === ConversionFields.LEFT_VALUE ||
-            inputName === ConversionFields.RIGHT_CURRENCY
-        ) {
-      return ConvertionDirection.LEFT_TO_RIGHT
-    }
-    return ConvertionDirection.RIGHT_TO_LEFT
   }
 
   const getSources = (inputName, inputValue) => {
@@ -143,27 +122,24 @@ const Converter = (props) => {
   const isRatePerDayAvailable = (date) => rates.some((rate) => Object.values(rate)[0] === date);
 
   const changeRateAvailableStatus = (status) => {
-    // debugger
     setConversionForm({
       ...conversionForm,
-      rateAvailable: status
+      isRateAvailable: status
     });
   }
 
   const calculate = (sourceValue, sourceCurrency, targetCurrency, sourceRate, targetRate) => {
-
     if (sourceCurrency === targetCurrency) {
       return sourceValue;
     }
 
     const rubValue = sourceValue * sourceRate;
-    const convertedValue = Math.round(rubValue / targetRate);
+    const convertedValue = Math.round((rubValue / targetRate) * 100) / 100;
   
     return convertedValue;
   }
 
   const saveValues = (targetValue, inputValue, inputName) => {
-    // debugger
     switch (inputName) {
       case ConversionFields.LEFT_VALUE:
         setConversionForm({
@@ -204,7 +180,6 @@ const Converter = (props) => {
   }
 
   const isInputNotEmpty = () => conversionForm.leftValue !== `` || conversionForm.rightValue !== ``
-
   const isHistoryMaxLenght = () => conversions.length === HistoryLimit.MAX;
 
   const limitHistoryLength = () => {
@@ -244,12 +219,10 @@ const Converter = (props) => {
       doConversion(fieldName, dateValue);
       return;
     } 
-    // debugger
     changeRateAvailableStatus(false)
   };
 
   const handleSubmitClick = (evt) => {
-    // debugger
     evt.preventDefault();
     if (isInputNotEmpty()) {
       limitHistoryLength()
@@ -343,6 +316,14 @@ const mapDispatchToProps = (dispatch) => ({
   onRemoveConversion() {
     dispatch(ActionCreator.removeConversion())
   }
-})
+});
+
+Converter.propTypes = {
+  isLoadFailed: PropTypes.bool.isRequired,
+  onSaveConversion: PropTypes.func.isRequired,
+  onRemoveConversion: PropTypes.func.isRequired,
+  rates: ratesPropTypes,
+  conversions: conversionsPropTypes
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Converter);
