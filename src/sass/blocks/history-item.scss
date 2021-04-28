@@ -1,22 +1,28 @@
 .history-item {
   position: relative;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
 
-  width: 401px;
-  margin-right: 219px;
+  margin-right: 100px;
   margin-bottom: 28px;
 
   font-size: 18px;
 }
 
+.history-item__date {
+  margin-right: 100px;
+}
+
 .history-item__source {
+  margin-right: 100px;
+  justify-self: flex-start;
+
   &::after {
     content: "";
     position: absolute;
 
     top: 0;
-    right: 109px;
+    left: 300px;
 
     width: 40px;
     height: 19px;
@@ -24,4 +30,8 @@
     background-image: url("../../img/arrow.svg");
   }
 }
+
+// .history-item__target {
+//   margin-right: 0px;
+// }
 
