@@ -149,6 +149,7 @@ const Converter = (props) => {
   }
 
   const saveValues = (targetValue, inputValue, inputName) => {
+    debugger
     switch (inputName) {
       case ConversionFields.LEFT_VALUE:
         setConversionForm({

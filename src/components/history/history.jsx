@@ -9,8 +9,6 @@ import {conversionsPropTypes} from '../../utils/props-validation';
 const history = (props) => {
   const {conversions, onClearHistory} = props;
 
-  console.log(conversions)
-
   const getHistoryItems = () => {
     if (conversions.length === 0) {
       return ``;
