@@ -19,7 +19,7 @@ const getRatesData = (items) => {
   const successResponses = getSuccessResponses(items);
   let ratesData = [];
   successResponses.map((response) => {
-    ratesData.push(response.value.data)
+    return ratesData.push(response.value.data)
   })
   return ratesData;
 }

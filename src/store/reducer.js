@@ -41,9 +41,9 @@ const reducer = (state = initialState, action) => {
           ...state,
           isLoadFailed: true
         }
+      default:
+        return state;
   }
-  console.log(state.conversions)
-  return state;
 };
 
 export {reducer};

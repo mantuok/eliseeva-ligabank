@@ -15,7 +15,7 @@ const Page = (props) => {
       if(!isDataLoaded) {
        onLoadData()
       }
-  }, [isDataLoaded]);
+  }, [isDataLoaded, onLoadData]);
 
   return (
     <div className="page">

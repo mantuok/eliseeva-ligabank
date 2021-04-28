@@ -82,6 +82,11 @@ const Converter = (props) => {
           value: conversionForm.leftValue,
           currency: conversionForm.leftCurrency
         };
+      default:
+        return {
+          value: ``,
+          currency: ``
+        }
     }
   };
 
@@ -97,6 +102,8 @@ const Converter = (props) => {
         return inputValue;
       case ConversionFields.DATE:
         return conversionForm.rightCurrency;
+      default:
+        return ``;
     }
   };
 
@@ -115,7 +122,9 @@ const Converter = (props) => {
         const currentRates = rate.rates;
         requestedRate = currentRates[currency];
       }
+      return requestedRate;
     });
+
     return requestedRate;
   }
 
@@ -175,6 +184,8 @@ const Converter = (props) => {
           rightValue: targetValue,
           date: inputValue
         }); 
+        break;
+      default: 
         break;
     }
   }

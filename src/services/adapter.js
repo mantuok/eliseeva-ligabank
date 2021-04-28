@@ -7,7 +7,7 @@ import {formatDate} from '../utils/utils';
 export const adaptRatesPerPeriod = (rawDataPerPeriod) => {
   let adaptedList = [];
   rawDataPerPeriod.map((rawItem) => {
-    adaptedList.push(adaptRatesPerDay(rawItem))
+    return adaptedList.push(adaptRatesPerDay(rawItem))
   })
   return adaptedList;
 }
@@ -25,7 +25,7 @@ export const adaptRatesPerDay = (rawDataPerDay) => {
   };
 
   rates.map((rate) => {
-    adaptedRatesPerDay = ({
+    return adaptedRatesPerDay = ({
       ...adaptedRatesPerDay,
       rates: {
         ...adaptedRatesPerDay.rates,
@@ -33,6 +33,5 @@ export const adaptRatesPerDay = (rawDataPerDay) => {
       }
     })
   })
-  
   return adaptedRatesPerDay;
 }
