@@ -24,9 +24,9 @@ const Converter = (props) => {
   const {rates, conversions, isLoadFailed, onSaveConversion, onRemoveConversion} = props;
   
   const [conversionForm, setConversionForm] = useState({
-    leftValue: ``,
+    leftValue: '',
     leftCurrency: `RUB`,
-    rightValue: ``,
+    rightValue: '',
     rightCurrency: `RUB`,
     date: todayFormatted,
     isRateAvailable: true,
@@ -35,14 +35,14 @@ const Converter = (props) => {
   const getCurrencyOptionsList = () => {
     return Object.keys(Rate).map((rate) => 
      <option value={rate} key={rate}>{rate}</option>
-    )
-  }
+    );
+  };
 
   const isErrorMessageToBeShown = () => {
     if (isLoadFailed || !conversionForm.isRateAvailable) {
-      return <ErrorMessage />
+      return <ErrorMessage />;
     }
-    return ``
+    return ``;
   };
 
   const doConversion = (inputName, inputValue) => {
@@ -86,7 +86,7 @@ const Converter = (props) => {
         return {
           value: ``,
           currency: ``
-        }
+        };
     }
   };
 
@@ -153,35 +153,35 @@ const Converter = (props) => {
       case ConversionFields.LEFT_VALUE:
         setConversionForm({
           ...conversionForm,
-          rightValue: targetValue,
-          leftValue: inputValue
+          rightValue: parseInt(targetValue),
+          leftValue: parseInt(inputValue)
         });
         break;
       case ConversionFields.LEFT_CURRENCY:
         setConversionForm({
           ...conversionForm,
-          rightValue: targetValue,
+          rightValue: parseInt(targetValue),
           leftCurrency: inputValue
         });
         break;
       case ConversionFields.RIGHT_VALUE:
         setConversionForm({
           ...conversionForm,
-          leftValue: targetValue,
-          rightValue: inputValue
+          leftValue: parseInt(targetValue),
+          rightValue: parseInt(inputValue)
         });
         break;
       case ConversionFields.RIGHT_CURRENCY:
         setConversionForm({
           ...conversionForm,
-          rightValue: targetValue,
+          rightValue: parseInt(targetValue),
           rightCurrency: inputValue
         }); 
         break;
       case ConversionFields.DATE:
         setConversionForm({
           ...conversionForm,
-          rightValue: targetValue,
+          rightValue: parseInt(targetValue),
           date: inputValue
         }); 
         break;
@@ -190,12 +190,12 @@ const Converter = (props) => {
     }
   }
 
-  const isInputNotEmpty = () => conversionForm.leftValue !== `` || conversionForm.rightValue !== ``
+  const isInputNotEmpty = () => conversionForm.leftValue !== `` || conversionForm.rightValue !== ``;
   const isHistoryMaxLenght = () => conversions.length === HistoryLimit.MAX;
 
   const limitHistoryLength = () => {
     if (isHistoryMaxLenght()) {
-      onRemoveConversion()
+      onRemoveConversion();
     }
   };
 
@@ -207,7 +207,7 @@ const Converter = (props) => {
       toValue: conversionForm.rightValue,
       toCurrency: conversionForm.rightCurrency
     });
-  }
+  };
 
   const resetConversionForm = () => {
     setConversionForm({
@@ -216,7 +216,7 @@ const Converter = (props) => {
       leftCurrency: `RUB`,
       rightValue: ``,
       rightCurrency: `RUB`,
-    })
+    });
   };
 
   const handleInputChange = (evt) => {
@@ -227,20 +227,22 @@ const Converter = (props) => {
   const handleDateChange = (dateValue, fieldName) => {
     if (isRatePerDayAvailable(dateValue)) {
       changeRateAvailableStatus(true)
+      if (isInputNotEmpty()) {
       doConversion(fieldName, dateValue);
+      }
       return;
     } 
-    changeRateAvailableStatus(false)
+    changeRateAvailableStatus(false);
   };
 
   const handleSubmitClick = (evt) => {
     evt.preventDefault();
     if (isInputNotEmpty()) {
-      limitHistoryLength()
+      limitHistoryLength();
       saveConversion();
       resetConversionForm();
     }
-  }
+  };
 
   return (
     <section className="main__converter converter">
@@ -311,8 +313,16 @@ const Converter = (props) => {
             Сохранить результат</button>
       </form>
     </section>
-  )
-}
+  );
+};
+
+Converter.propTypes = {
+  isLoadFailed: PropTypes.bool.isRequired,
+  onSaveConversion: PropTypes.func.isRequired,
+  onRemoveConversion: PropTypes.func.isRequired,
+  rates: ratesPropTypes,
+  conversions: conversionsPropTypes
+};
 
 const mapStateToProps = (state) => ({
   rates: state.rates,
@@ -328,13 +338,5 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.removeConversion())
   }
 });
-
-Converter.propTypes = {
-  isLoadFailed: PropTypes.bool.isRequired,
-  onSaveConversion: PropTypes.func.isRequired,
-  onRemoveConversion: PropTypes.func.isRequired,
-  rates: ratesPropTypes,
-  conversions: conversionsPropTypes
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Converter);

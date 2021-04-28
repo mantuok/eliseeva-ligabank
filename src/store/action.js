@@ -28,30 +28,4 @@ export const ActionCreator = {
   setFailedLoad: () => ({
     type: ActionType.SET_FAILED_LOAD
   })
-}
-
-export const loadRates = (rates) => ({
-  type: ActionType.LOAD_RATES,
-  payload: rates
-});
-
-export const clearRates = () => ({
-  type: ActionType.CLEAR_RATES
-});
-
-export const saveConversion = (conversionData) => ({
-  type: ActionType.SAVE_CONVERSION,
-  payload: conversionData
-});
-
-export const clearConversions = () => ({
-  type: ActionType.CLEAR_CONVERSIONS
-})
-
-export const removeConversion = () => ({
-  type: ActionType.REMOVE_CONVERSION
-})
-
-export const setFailedLoad = () => ({
-  type: ActionType.SET_FAILED_LOAD
-})
+};

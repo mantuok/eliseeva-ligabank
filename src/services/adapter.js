@@ -7,10 +7,10 @@ import {formatDate} from '../utils/utils';
 export const adaptRatesPerPeriod = (rawDataPerPeriod) => {
   let adaptedList = [];
   rawDataPerPeriod.map((rawItem) => {
-    return adaptedList.push(adaptRatesPerDay(rawItem))
+    return adaptedList.push(adaptRatesPerDay(rawItem));
   })
   return adaptedList;
-}
+};
 
 export const adaptRatesPerDay = (rawDataPerDay) => {
   const rates = Object.keys(Rate);
@@ -32,6 +32,6 @@ export const adaptRatesPerDay = (rawDataPerDay) => {
         [rate]: rawDataPerDay.Valute[rate].Value
       }
     })
-  })
+  });
   return adaptedRatesPerDay;
-}
+};

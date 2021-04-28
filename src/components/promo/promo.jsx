@@ -11,7 +11,7 @@ const Promo = () => {
         <img className="promo__cards-image" src="../img/black-and-white-cards.png" alt="Пример карт банка" width="444" height="286" />
       </div>
     </section>
-  )
+  );
 };
 
 export default Promo;

@@ -11,11 +11,9 @@ import PropTypes from 'prop-types';
 const Page = (props) => {
   const {isDataLoaded, onLoadData} = props;
 
-  console.log(isDataLoaded)
-
   useEffect(() => {
       if(!isDataLoaded) {
-       onLoadData()
+       onLoadData();
       }
   }, [isDataLoaded, onLoadData]);
 
@@ -29,7 +27,12 @@ const Page = (props) => {
       </main>
       <Footer />
     </div>
-  )
+  );
+};
+
+Page.propTypes = {
+  isDataLoaded: PropTypes.bool.isRequired,
+  onLoadData: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => ({
@@ -39,13 +42,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onLoadData() {
-    dispatch(fetchRatesPerPeriod())
+    dispatch(fetchRatesPerPeriod());
   }
-})
-
-Page.propTypes = {
-  isDataLoaded: PropTypes.bool.isRequired,
-  onLoadData: PropTypes.func.isRequired
-};
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Page);

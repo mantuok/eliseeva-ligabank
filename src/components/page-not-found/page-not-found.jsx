@@ -11,7 +11,7 @@ const PageNotFound = () => {
       </section>
       <Footer />
     </div>
-  )
+  );
 };
 
 export default PageNotFound;

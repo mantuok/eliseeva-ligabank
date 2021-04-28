@@ -9,6 +9,8 @@ import {conversionsPropTypes} from '../../utils/props-validation';
 const history = (props) => {
   const {conversions, onClearHistory} = props;
 
+  console.log(conversions)
+
   const getHistoryItems = () => {
     if (conversions.length === 0) {
       return ``;
@@ -22,13 +24,13 @@ const history = (props) => {
             fromCurrency={conversion.fromCurrency}
             toValue={conversion.toValue} 
             toCurrency={conversion.toCurrency}
-        />)
-  }
+        />);
+  };
 
   const handleClearButtonClick = (evt) => {
     evt.preventDefault()
     onClearHistory()
-  }
+  };
 
   return (
     <section className="main__history history">
@@ -46,8 +48,13 @@ const history = (props) => {
         </button>
       </div>
     </section>
-  ) 
-}
+  );
+};
+
+History.propTypes = {
+  onClearHistory: PropTypes.func.isRequired,
+  conversions: conversionsPropTypes
+};
 
 const mapStateToProps = (state) => ({
   conversions: state.conversions
@@ -58,10 +65,5 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(ActionCreator.clearConversions());
   }
 });
-
-History.propTypes = {
-  onClearHistory: PropTypes.func.isRequired,
-  conversions: conversionsPropTypes
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(history);
